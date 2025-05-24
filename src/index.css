@@ -1,0 +1,96 @@
+
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    @layer base {
+      :root {
+        --background: 240 10% 3.9%; /* Dark Slate Gray */
+        --foreground: 0 0% 98%; /* Almost White */
+
+        --card: 240 10% 10%; /* Darker Card Background */
+        --card-foreground: 0 0% 98%;
+
+        --popover: 240 10% 3.9%;
+        --popover-foreground: 0 0% 98%;
+
+        --primary: 260 90% 65%; /* Vibrant Purple */
+        --primary-foreground: 0 0% 98%;
+
+        --secondary: 210 90% 55%; /* Bright Blue */
+        --secondary-foreground: 0 0% 98%;
+
+        --muted: 240 5% 25%;
+        --muted-foreground: 240 5% 65%;
+
+        --accent: 300 80% 60%; /* Magenta/Pink Accent */
+        --accent-foreground: 0 0% 98%;
+
+        --destructive: 0 70% 50%;
+        --destructive-foreground: 0 0% 98%;
+
+        --border: 240 5% 20%;
+        --input: 240 5% 20%;
+        --ring: 260 90% 70%; /* Lighter Purple for focus rings */
+
+        --radius: 0.75rem;
+      }
+
+      .dark {
+        --background: 240 10% 3.9%;
+        --foreground: 0 0% 98%;
+
+        --card: 240 10% 10%;
+        --card-foreground: 0 0% 98%;
+
+        --popover: 240 10% 3.9%;
+        --popover-foreground: 0 0% 98%;
+
+        --primary: 260 90% 65%;
+        --primary-foreground: 0 0% 98%;
+
+        --secondary: 210 90% 55%;
+        --secondary-foreground: 0 0% 98%;
+
+        --muted: 240 5% 25%;
+        --muted-foreground: 240 5% 65%;
+
+        --accent: 300 80% 60%;
+        --accent-foreground: 0 0% 98%;
+
+        --destructive: 0 70% 50%;
+        --destructive-foreground: 0 0% 98%;
+
+        --border: 240 5% 20%;
+        --input: 240 5% 20%;
+        --ring: 260 90% 70%;
+      }
+    }
+
+    @layer base {
+      * {
+        @apply border-border;
+      }
+      body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      /* Add Inter font import in index.html or ensure it's available */
+      /* For example, in index.html: <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"> */
+    }
+
+    .glassmorphic {
+      background: rgba(255, 255, 255, 0.05); /* Adjust alpha for desired transparency */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .product-panel-transparent {
+      background-color: hsla(var(--card) / 0.5); /* Using HSL for card background with 50% alpha */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+  
