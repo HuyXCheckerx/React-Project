@@ -38,7 +38,7 @@
           <div className="container mx-auto flex justify-between items-center">
             <Link to="/" className="flex items-center space-x-2 text-2xl font-orbitron font-bold text-primary">
               <Zap className="h-8 w-8 text-primary animate-pulse" />
-              <span>SynthTools</span>
+              <span>Cryoner Project</span>
             </Link>
             <div className="hidden md:flex space-x-6 items-center">
               {navItems.map((item) => (

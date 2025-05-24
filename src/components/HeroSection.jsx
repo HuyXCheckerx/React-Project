@@ -25,7 +25,7 @@
               className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6"
             >
               <Cpu className="inline-block h-5 w-5 mr-2" />
-              Next-Gen Digital Tools
+              Next-Gen Parsers
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, scale: 0.8 }}
@@ -33,7 +33,8 @@
               transition={{ duration: 0.7, delay: 0.2, ease: 'backOut' }}
               className="text-5xl md:text-7xl font-orbitron font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary"
             >
-              Elevate Your Digital Edge
+              Pillowware Tools
+
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -41,7 +42,8 @@
               transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
               className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-10"
             >
-              Discover powerful SEO scraping tools and lightning-fast crypto bots. Gain an unfair advantage with our suite of innovative solutions designed for peak performance.
+              Discover Cryoner Plans as well as other sets of tools designed with :3 by the Cryoner Team. 
+
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -54,7 +56,7 @@
                 onClick={scrollToProducts}
                 className="bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 transition-opacity duration-300 shadow-lg transform hover:scale-105"
               >
-                Explore Tools <ArrowRight className="ml-2 h-5 w-5" />
+                Explore  <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
                 variant="outline"

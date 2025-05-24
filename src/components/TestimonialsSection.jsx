@@ -40,9 +40,9 @@
               className="text-center mb-12"
             >
               <MessageSquareQuote className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Loved by Innovators</h2>
+              <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Loved by the Community</h2>
               <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                Hear what our users are saying about their success with SynthTools.
+                Hear what our users are saying about their success with Cryoner.
               </p>
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -4,7 +4,7 @@
       {
         id: 'seo-scraper',
         name: 'SEO Web Scraping Tool',
-        tagline: 'Uncover SEO insights effortlessly.',
+        tagline: 'Uncover SEO insights effort',
         description: 'Powerful tool for extracting SEO data from websites. Boost your rankings with comprehensive analytics and competitor insights.',
         features: ['Keyword Tracking', 'Competitor Analysis', 'Backlink Monitoring', 'Automated Site Audits', 'SERP Data Extraction'],
         pricingPlans: [

@@ -54,7 +54,7 @@
               <CreditCard className="h-12 w-12 text-primary mx-auto mb-4" />
               <CardTitle className="text-3xl font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Crypto Checkout</CardTitle>
               <CardDescription className="text-muted-foreground">
-                Complete your purchase using your preferred cryptocurrency.
+                Complete your purchase by joining telegram or discord with your txid.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -64,16 +64,16 @@
                   <ul className="space-y-1 text-sm text-muted-foreground mb-2">
                     {cartItems.map(item => (
                       <li key={item.id} className="flex justify-between">
-                        <span>{item.name} (x1)</span>
+                        <span></span>
                         {/* This is a placeholder price, real app needs logic */}
-                        <span>{item.pricingPlans[0]?.price || 'N/A'}</span>
+                        <span></span>
                       </li>
                     ))}
                   </ul>
                   <div className="flex justify-between font-semibold text-foreground border-t border-border pt-2">
                     <span>Total (Approx.)</span>
                     {/* This is a placeholder total, real app needs logic */}
-                    <span>${totalAmount} USD / Equivalent Crypto</span> 
+                    <span>Pay the equivalent and create a ticket on Telegram/discord</span> 
                   </div>
                 </div>
               ) : (
@@ -96,7 +96,7 @@
                         onSelect={() => setSelectedCrypto(crypto)}
                         className="hover:bg-accent/50 focus:bg-accent/50"
                       >
-                        <img  alt={crypto.name} className="w-5 h-5 mr-2 rounded-full" src="https://images.unsplash.com/photo-1627978341644-910a94af88c4" />
+                        <img  alt={crypto.name} className="w-5 h-5 mr-2 rounded-full" src="https://variety.com/wp-content/uploads/2021/12/Bitcoin-Cryptocurrency-Placeholder.jpg?w=1000&h=563&crop=1&resize=910%2C511" />
                         {crypto.name} ({crypto.symbol})
                       </DropdownMenuItem>
                     ))}
@@ -143,7 +143,7 @@
                       setSelectedCrypto(null);
                     }}
                   >
-                    I've made the payment (Simulated) <ExternalLink className="ml-1 h-3 w-3" />
+                    I've made the payment <ExternalLink className="ml-1 h-3 w-3" />
                   </Button>
                 </motion.div>
               )}

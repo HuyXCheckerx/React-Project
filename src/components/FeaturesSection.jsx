@@ -8,28 +8,24 @@
       {
         icon: <Zap className="h-10 w-10 text-primary mb-4" />,
         title: 'Blazing Fast Performance',
-        description: 'Our tools are optimized for speed, ensuring you get data and execute actions in record time.',
+        description: 'Our tools are optimized for speed, written mostly in Rust, ensuring you get data and execute actions in record time.',
       },
       {
         icon: <ShieldCheck className="h-10 w-10 text-green-500 mb-4" />,
         title: 'Robust Security',
-        description: 'Security is paramount. We implement industry-best practices to protect your data and assets.',
+        description: 'All HIWD, IPs, and sensitive data are encrypted and stored securely, protecting your privacy and assets.',
       },
       {
         icon: <BarChartBig className="h-10 w-10 text-blue-500 mb-4" />,
         title: 'Actionable Analytics',
-        description: 'Gain deep insights with comprehensive dashboards and reporting features.',
+        description: 'Detailed Antipublic data.',
       },
       {
         icon: <Settings2 className="h-10 w-10 text-purple-500 mb-4" />,
         title: 'Highly Customizable',
         description: 'Tailor tools to your specific needs with flexible settings and configurations.',
       },
-      {
-        icon: <BrainCircuit className="h-10 w-10 text-orange-500 mb-4" />,
-        title: 'AI-Powered Insights',
-        description: 'Leverage artificial intelligence for smarter decision-making and predictive analysis.',
-      },
+     
     ];
 
     const FeaturesSection = () => {
@@ -44,9 +40,9 @@
               className="text-center mb-12"
             >
               <Settings2 className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Why Choose SynthTools?</h2>
+              <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Why Choose The Cryoner Project?</h2>
               <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                We're committed to providing powerful, reliable, and innovative solutions that drive results.
+                We're committed to providing Anonymous Cutting edge tools for our community.
               </p>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
