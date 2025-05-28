@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 7%;
+    --foreground: 220 15% 90%;
+    
+    --card: 220 20% 10%;
+    --card-foreground: 220 15% 90%;
+    
+    --popover: 220 20% 7%;
+    --popover-foreground: 220 15% 90%;
+    
+    --primary: 260 80% 65%;
+    --primary-foreground: 220 15% 95%;
+    
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 220 15% 95%;
+    
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 60%;
+    
+    --accent: 220 15% 25%;
+    --accent-foreground: 220 15% 95%;
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 260 80% 70%;
+    
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--primary) / 0.2) 100%);
+}
+
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary) / 0.7));
+}
+
+.glass-card {
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid hsl(var(--border) / 0.5);
+  box-shadow: 0 4px 20px hsla(var(--background) / 0.1);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+  background: hsl(var(--card) / 0.8);
+  border-color: hsl(var(--border));
+}
+
+.dot-pattern {
+  background-image: radial-gradient(hsl(var(--primary) / 0.1) 0.5px, transparent 0.5px);
+  background-size: 15px 15px;
+}
+
+.price-card {
+  transition: all 0.3s ease;
+  border: 1px solid hsl(var(--border));
+}
+
+.price-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px hsla(var(--background) / 0.2);
+  border-color: hsl(var(--primary));
+}
+
+.feature-icon {
+  @apply bg-primary/10 text-primary rounded-lg p-3 flex items-center justify-center;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: hsl(var(--primary));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.active-nav-link::after {
+  width: 100%;
+}
