@@ -11,9 +11,10 @@ const generateQrCodeUrl = (address) => `https://api.qrserver.com/v1/create-qr-co
 
 const cryptoAddresses = {
   usdt: {
-    sol: "YOUR_USDT_SOLANA_ADDRESS_HERE",
-    erc20: "YOUR_USDT_ERC20_ADDRESS_HERE",
-    bnb: "YOUR_USDT_BNB_ADDRESS_HERE",
+    sol: "CF8hdkDE1Xd9LrvNMpuARKDKGTRCngJGHgbPhYQ7Y128",
+    erc20: "0xfefa148b29438a890f085c3a5020024d6f0929eb",
+    bnb: "0xfefa148b29438a890f085c3a5020024d6f0929eb",
+    trc20: "TXR46zUYHpm9KhneZvPjiWQT8DLdtJjH5k",
   },
   btc: "YOUR_BITCOIN_ADDRESS_HERE",
   eth: "YOUR_ETHEREUM_ADDRESS_HERE",
@@ -84,7 +85,7 @@ const PaymentDetailsPage = () => {
       className: "bg-green-600 text-white border-green-600",
     });
     setTimeout(() => {
-      window.location.href = "https://t.me/yourtelegramusername"; // Replace with your Telegram link
+      window.location.href = "https://t.me/pillowware"; // Replace with your Telegram link
     }, 2000);
   };
 
