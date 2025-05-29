@@ -16,10 +16,10 @@ const cryptoAddresses = {
     bnb: "0xfefa148b29438a890f085c3a5020024d6f0929eb",
     trc20: "TXR46zUYHpm9KhneZvPjiWQT8DLdtJjH5k",
   },
-  btc: "YOUR_BITCOIN_ADDRESS_HERE",
-  eth: "YOUR_ETHEREUM_ADDRESS_HERE",
-  ltc: "YOUR_LITECOIN_ADDRESS_HERE",
-  sol: "YOUR_SOLANA_ADDRESS_HERE",
+  btc: "3GiZafrEY9BKXRTTfZffXUf1cvwKiUVYQb",
+  eth: "0xfefa148b29438a890f085c3a5020024d6f0929eb",
+  ltc: "ltc1qa8urj24lktmpy7kc4v2ftc6slwhftkdt5rjtd2",
+  sol: "CF8hdkDE1Xd9LrvNMpuARKDKGTRCngJGHgbPhYQ7Y128",
 };
 
 const PaymentDetailsPage = () => {
@@ -136,6 +136,7 @@ const PaymentDetailsPage = () => {
                 <li>Ensure you are sending {cryptoName} on the {chainName || cryptoName} network.</li>
                 <li>Sending any other coin or to a different network may result in loss of funds.</li>
                 <li>Transactions are final and cannot be reversed.</li>
+                <li>Send the exact amount of {cryptoName} to the address above, then click the Check Payment button.</li>
               </ul>
             </div>
 
@@ -144,7 +145,7 @@ const PaymentDetailsPage = () => {
               className="w-full bg-primary hover:bg-primary/90 text-primary-foreground mb-4"
               onClick={handleDone}
             >
-              I've Made The Payment <ExternalLink className="ml-2 h-4 w-4"/>
+              Check Payment <ExternalLink className="ml-2 h-4 w-4"/>
             </Button>
           </>
         )}

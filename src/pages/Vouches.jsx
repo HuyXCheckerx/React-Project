@@ -9,30 +9,30 @@ const Vouches = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Alex K.",
+      name: "KKK",
       date: "May 15, 2025",
       rating: 5,
       category: "tools",
       product: "GhostPump Pro",
-      comment: "Absolutely incredible tool. The execution speed is unmatched and the anti-snipe feature saved me multiple times. Worth every SOL!"
+      comment: "GOATED"
     },
     {
       id: 2,
-      name: "Michael T.",
+      name: "Tbaggger",
       date: "May 10, 2025",
       rating: 5,
       category: "services",
       product: "WP/cPanel Dumping Tutorial",
-      comment: "The tutorial was extremely detailed and easy to follow. The 1-on-1 sessions were invaluable, and I'm already seeing results. Highly recommend!"
+      comment: "W tutor, i was a complete beginner and im now supplying combos to russians lol."
     },
     {
       id: 3,
-      name: "Sarah L.",
+      name: "Llamtek",
       date: "May 5, 2025",
       rating: 4,
       category: "tools",
       product: "Cryoner Enterprise",
-      comment: "Great tool with powerful features. The vulnerability scanner is top-notch. Only giving 4 stars because the UI could be a bit more intuitive, but functionality-wise it's excellent."
+      comment: "Nice tools"
     },
     {
       id: 4,
@@ -190,9 +190,9 @@ const Vouches = () => {
         >
           <h2 className="text-2xl font-bold mb-4">Had a great experience?</h2>
           <p className="text-muted-foreground mb-6">
-            We appreciate your feedback! Share your experience with our products and services.
+            Submit a vouch on our telegram channel now.
           </p>
-          <Button size="lg">Submit a Vouch</Button>
+
         </motion.div>
       </div>
     </div>
