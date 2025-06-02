@@ -8,9 +8,9 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <span className="text-xl font-bold gradient-text">CyberTools</span>
+            <span className="text-xl font-bold gradient-text">Cryoner Project</span>
             <p className="text-muted-foreground text-sm">
-              Providing premium cyber tools and services since 2022.
+              Cryoner Project, Since 2019.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -76,13 +76,13 @@ const Footer = () => {
             <p className="font-medium mb-4">Contact</p>
             <ul className="space-y-2">
               <li className="text-sm text-muted-foreground">
-                Telegram: @cybertools
+                Telegram: @pillowware
               </li>
               <li className="text-sm text-muted-foreground">
-                Discord: cybertools
+
               </li>
               <li className="text-sm text-muted-foreground">
-                Email: contact@cybertools.com
+
               </li>
             </ul>
           </div>
@@ -90,7 +90,7 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} CyberTools. All rights reserved.
+            © {new Date().getFullYear()} Cryoner Project. All rights reserved.
           </p>
         </div>
       </div>
