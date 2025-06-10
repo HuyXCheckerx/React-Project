@@ -68,7 +68,7 @@ const HomePage = ({ variants, transition }) => {
             animate={{ opacity: 1, y: 0, letterSpacing: '0em' }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           >
-            CRYONER
+            CRYONER Project
           </motion.h1>
           <motion.p
             className="text-xl md:text-2xl text-foreground/80 mb-12 max-w-3xl mx-auto font-roboto-mono"
@@ -76,9 +76,9 @@ const HomePage = ({ variants, transition }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: 'circOut', delay: 0.4 }}
           >
-            Elite Cyber Arsenal. Precision Tools for Digital Dominance.
+            Optimized and 
             <br />
-            Engineered by <span className="text-primary font-semibold">@pillowware</span>.
+            Made with &lt;3 <span className="text-primary font-semibold">@pillowware</span>.
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row gap-5 justify-center items-center"
@@ -91,13 +91,13 @@ const HomePage = ({ variants, transition }) => {
                 size="lg"
                 className="bg-gradient-to-r from-primary to-accent hover:opacity-95 text-primary-foreground px-12 py-8 rounded-lg text-lg pulse-glow shadow-2xl font-orbitron-specific tracking-wider"
               >
-                EXPLORE ARSENAL <ArrowRight className="ml-3" size={24} />
+                Explore Services <ArrowRight className="ml-3" size={24} />
               </Button>
             </Link>
             <Link to="/uptime" className="flex items-center space-x-2.5 text-green-400 hover:text-green-300 transition-colors font-roboto-mono">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-ping absolute opacity-75"></div>
               <div className="w-3 h-3 bg-green-500 rounded-full relative"></div>
-              <span className="font-semibold text-sm">SYSTEMS OPERATIONAL</span>
+              <span className="font-semibold text-sm">Uptime ~ 99.9%</span>
             </Link>
           </motion.div>
         </div>
@@ -105,12 +105,12 @@ const HomePage = ({ variants, transition }) => {
       </section>
       
       {/* Summarized Features Section */}
-       <Section id="overview" title="Core Offerings Overview" icon={Layers}>
+       <Section id="overview" title="OVERVIEW" icon={Layers}>
         <p className="text-center text-lg text-foreground/70 mb-12 max-w-3xl mx-auto font-roboto-mono">
-          A curated selection of our high-end cyber tools and services, designed for professionals who demand the best. Each suite is meticulously crafted for specific operational needs.
+          Fastest and most reliable tools/services in the combolist/sol community.
         </p>
-        <Tabs defaultValue={serviceCategories[0].id} className="w-full max-w-5xl mx-auto">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 bg-card/50 p-2 rounded-lg border border-border/30 mb-8">
+        <Tabs defaultValue={serviceCategories[0].id} className="w-full max-w-100xl mx-auto">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 bg-card/50 p-2 rounded-lg border border-border/30 mb-8 h-100">
             {serviceCategories.map(cat => (
               <TabsTrigger key={cat.id} value={cat.id} className="py-3 data-[state=active]:bg-primary/10 data-[state=active]:text-primary data-[state=active]:shadow-md font-orbitron-specific tracking-wide">
                 {cat.title}

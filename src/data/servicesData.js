@@ -190,8 +190,8 @@ export const allServicesFlat = [
 ];
 
 export const serviceCategories = [
-  { id: "general-tools", title: "General Tools", data: generalToolsData, icon: Code, summary: "Versatile tools for various digital operations and analysis." },
-  { id: "specialized-services", title: "Specialized Services", data: specializedServicesData, icon: Layers, summary: "Bespoke solutions and educational programs for advanced users." },
-  { id: "solana-trading-bots", title: "Solana Trading Bots", data: solanaTradingBotsData, icon: Bot, summary: "High-frequency trading bots and MEV solutions for the Solana ecosystem." },
-  { id: "legacy-tools", title: "Legacy Tools", data: legacyServicesData, icon: Eye, summary: "Previously offered tools, still available for specific needs." },
+  { id: "general-tools", title: "Parsers", data: generalToolsData, icon: Code, summary: "Best ever Google proxyless parsers on the market with at least 10x faster and more reliable than competitors." },
+  { id: "specialized-services", title: "Serivces/Tutors", data: specializedServicesData, icon: Layers, summary: "Dedicated tutors for both new and experienced sellers/dumpers/stockers." },
+  { id: "solana-trading-bots", title: "Solana Snipers", data: solanaTradingBotsData, icon: Bot, summary: "MEV/Bundler, Hardcoded in Rust and will beat any other bot on speed, reliability and privacy. Ensuring Stable and Profitable Launches." },
+  { id: "legacy-tools", title: "Legacy Checkers", data: legacyServicesData, icon: Eye, summary: "Other tools" },
 ];
