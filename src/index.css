@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 228 12% 10%; /* Even darker, near black with a hint of blue */
+    --foreground: 210 30% 95%; /* Lighter gray for better contrast */
+    --card: 228 10% 15%; /* Slightly lighter than background */
+    --card-foreground: 210 30% 95%;
+    --popover: 228 12% 10%;
+    --popover-foreground: 210 30% 95%;
+    --primary: 180 100% 50%; /* Pure Cyan */
+    --primary-foreground: 228 12% 10%;
+    --secondary: 220 8% 25%; /* Darker, less saturated blue-gray */
+    --secondary-foreground: 210 30% 95%;
+    --muted: 220 8% 25%;
+    --muted-foreground: 210 20% 75%; /* Lighter muted text */
+    --accent: 270 100% 70%; /* More vibrant purple */
+    --accent-foreground: 210 30% 95%;
+    --destructive: 0 80% 60%; /* Brighter red */
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 8% 30%; /* Slightly more visible border */
+    --input: 220 8% 20%; /* Input bg matches card or slightly darker */
+    --ring: 180 100% 60%; /* Cyan focus ring */
+    --radius: 0.5rem; /* Sharper, more techy radius */
+
+    /* Custom Font Families */
+    --font-pixel: 'Press Start 2P', 'Courier New', Courier, monospace; /* New pixel font */
+    --font-orbitron: 'Orbitron', sans-serif; /* Kept for potential specific fallback or very specific use */
+    --font-roboto-mono: 'Roboto Mono', monospace; /* Monospaced, clean for body */
+    --font-minecraft: var(--font-pixel); /* Main "blocky" font, now using Press Start 2P */
+  }
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-roboto-mono); /* Default to Roboto Mono for body text */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-minecraft); /* Headings use the pixel font */
+  letter-spacing: 0.02em; /* Adjusted for pixel font readability */
+}
+
+.glass-effect {
+  background: hsla(var(--card) / 0.6);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid hsla(var(--border) / 0.4);
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, hsl(var(--primary)) 20%, hsl(var(--accent)) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-gradient {
+  background: radial-gradient(ellipse at bottom, hsl(var(--background)) 0%, hsla(var(--card) / 0.5) 100%);
+}
+
+.service-card {
+  transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), box-shadow 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), border-color 0.5s;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+}
+
+.service-card:hover {
+  transform: translateY(-12px) scale(1.04);
+  box-shadow: 0 0 40px hsla(var(--primary) / 0.3), 0 0 80px hsla(var(--accent) / 0.2);
+  border-color: hsl(var(--primary) / 0.5);
+}
+
+.pulse-glow {
+  animation: pulse-glow-strong 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow-strong {
+  from { box-shadow: 0 0 15px hsla(var(--primary) / 0.4), 0 0 5px hsla(var(--accent) / 0.2); }
+  to { box-shadow: 0 0 35px hsla(var(--primary) / 0.7), 0 0 15px hsla(var(--accent) / 0.4); }
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background) / 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--secondary));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+.nav-link-active {
+  color: hsl(var(--primary));
+  position: relative;
+}
+
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+  border-radius: 1px;
+  box-shadow: 0 0 8px hsl(var(--primary) / 0.7);
+}
+
+html {
+  background-color: hsl(var(--background));
+}
+
+/* Input styles */
+.input {
+  background-color: hsl(var(--input));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-roboto-mono); /* Inputs remain readable */
+}
+.input:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.3);
+}
+
+/* Specific font class for elements that might not be headings but need the Minecraft font */
+.font-minecraft {
+  font-family: var(--font-minecraft); /* Will use Press Start 2P via variable */
+  letter-spacing: 0.02em; /* Adjusted */
+}
+
+/* Class for Orbitron/Pixel font for specific elements like buttons or nav links */
+.font-orbitron-specific {
+  font-family: var(--font-pixel); /* Changed to use the new pixel font */
+  letter-spacing: 0.02em; /* Ensure consistent spacing */
+}
+
+.tab-active {
+  background-color: hsl(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+  border-bottom-color: hsl(var(--primary));
+}
+
+/* Title Animation */
+@keyframes text-glitch {
+  0%, 100% {
+    text-shadow: 0 0 1px hsl(var(--primary) / 0.5), 0 0 3px hsl(var(--accent) / 0.3);
+    opacity: 1;
+  }
+  25% {
+    text-shadow: 1px 0px 1px hsl(var(--primary) / 0.7), -1px 0px 1px hsl(var(--accent) / 0.5);
+    opacity: 0.95;
+  }
+  50% {
+    text-shadow: 0 0 2px hsl(var(--primary) / 0.6), 0 0 5px hsl(var(--accent) / 0.4);
+    opacity: 1;
+  }
+  75% {
+    text-shadow: -1px 0px 1px hsl(var(--primary) / 0.7), 1px 0px 1px hsl(var(--accent) / 0.5);
+    opacity: 0.98;
+  }
+}
+
+.title-animate {
+  animation: text-glitch 4s ease-in-out infinite alternate;
+  display: inline-block; /* Ensures animation applies correctly */
+}
+
+/* Apply animation to gradient text specifically if needed */
+.gradient-text.title-animate {
+   /* The gradient itself will be animated by the text-shadow */
+}
