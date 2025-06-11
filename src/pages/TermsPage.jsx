@@ -43,7 +43,7 @@ const TermsPage = ({ variants, transition }) => {
       points: [
         "Support is provided for premium services through designated secure channels (e.g., Telegram: @pillowware). Response times may vary.",
         "Support is limited to the direct functionality of Cryoner Project services and does not extend to third-party applications or user-specific system configurations.",
-        "No warranty is provided for tools used outside their intended and documented scope or if modified by the user.",
+        "Warranty is only valid for 1 day with the case of checkers/parsers and 6 days(accounts/hits/ccs)`",
       ]
     },
     {
