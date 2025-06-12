@@ -34,5 +34,11 @@ export const vouchesData = [
     rating: 4, 
     comment: "Lowkey goated",
     serviceUsed: "Cryoner Parser Pro"
+  },
+  { 
+    name: "Nightsoul", 
+    rating: 4, 
+    comment: "Raise prices bro",
+    serviceUsed: "Cryoner Parser Pro"
   }
 ];
