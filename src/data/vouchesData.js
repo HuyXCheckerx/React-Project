@@ -1,38 +1,38 @@
 export const vouchesData = [
   { 
-    name: "Alex M.", 
+    name: "T.kkh", 
     rating: 5, 
-    comment: "Exceptional service quality. The WP/CPanel Dumping Tutor is incredibly detailed and the tools work flawlessly. Support is outstanding and responsive.",
+    comment: "W tutor, a complete newbie like me can now supply tier 1 combolist XD",
     serviceUsed: "WP/CPanel Dumping Tutor" 
   },
   { 
-    name: "Sarah K.", 
+    name: "...", 
     rating: 5, 
-    comment: "GhostPump Solutions are truly professional grade. The speed and anti-MEV features have significantly improved my Solana trading. Exactly what I needed for my projects.",
-    serviceUsed: "GhostPump Solutions"
+    comment: "Goated Bundler for my sol rugger lmao. Solid imma give it a 10/10",
+    serviceUsed: "GhostPump"
   },
   { 
-    name: "Mike R.", 
-    rating: 5, 
-    comment: "The Premium Checkers suite is reliable, fast, and secure. The PayPal checker is particularly impressive with its accuracy. Highly recommend Cryoner Project.",
-    serviceUsed: "Premium Checkers Suite"
+    name: "Rocky block", 
+    rating: 3, 
+    comment: "Nice checker but too expensive bro.",
+    serviceUsed: "Veralium Pre"
   },
   { 
-    name: "Emma L.", 
+    name: "Enwug", 
     rating: 5, 
-    comment: "Top-tier quality across the board. I've used multiple services and the customer service is always excellent. Cryoner is my go-to for professional tools.",
-    serviceUsed: "Multiple Services"
+    comment: "W",
+    serviceUsed: "Ghostpump Bundle"
   },
   { 
-    name: "John B.", 
+    name: "Zae >>", 
     rating: 5, 
-    comment: "The insights from the WP/CPanel Dumping Tutor are invaluable. Constant updates keep it relevant. Worth every penny for serious professionals.",
+    comment: "Raise the price nigga gatekeep it.",
     serviceUsed: "WP/CPanel Dumping Tutor"
   },
   { 
-    name: "Linda C.", 
+    name: "Pipebomb", 
     rating: 4, 
-    comment: "GhostPump is very powerful. Had a slight learning curve but the support team was helpful. Performance is undeniable.",
-    serviceUsed: "GhostPump Solutions"
+    comment: "Lowkey goated",
+    serviceUsed: "Cryoner Parser Pro"
   }
 ];
