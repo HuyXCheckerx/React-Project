@@ -160,11 +160,11 @@ const HomePage = ({ variants, transition }) => {
       <Section id="why-cryoner" title="The Cryoner Advantage" icon={Shield}>
         <div className="grid md:grid-cols-3 gap-8 text-left">
           {[
-            { icon: Zap, title: 'Unrivaled Performance', description: 'Our tools are optimized for speed, efficiency, and impact, giving you a distinct operational advantage.' },
-            { icon: Eye, title: 'Stealth & Anonymity', description: 'Designed with discretion in mind, ensuring your operations remain covert and secure.' },
-            { icon: Code, title: 'Cutting-Edge Technology', description: 'Leveraging the latest exploits and methodologies, constantly updated to stay ahead of the curve.' },
+            { icon: Zap, title: 'Unrivaled Performance', description: 'Written and Optimized with Rust, enhanced with the newest 0days, and clean/minimalist webUI is our proudest advantages.' },
+            { icon: Eye, title: 'Stealth & Anonymity', description: 'Designed by and for anonymous hackers, every bit of Cryoner Project is anonymous.' },
+            { icon: Code, title: 'Cutting-Edge Technology', description: 'Leveraging the latest exploits and 0days, constantly updated to stay ahead of the curve.' },
             { icon: Settings, title: 'Precision Engineering', description: 'Each tool is meticulously crafted for reliability and effectiveness in complex digital environments.' },
-            { icon: Bot, title: 'Automated Efficiency', description: 'Sophisticated automation for tasks requiring speed, scale, and persistence.' },
+            { icon: Bot, title: 'Automated Efficiency', description: 'Speed, scale and persistence is nothing compairing to Cryoner project ghostpump/mev and botnets.' },
             { icon: TrendingUp, title: 'Continuous Evolution', description: 'We are committed to ongoing research and development, ensuring our arsenal remains state-of-the-art.' },
           ].map((item, index) => (
             <motion.div
