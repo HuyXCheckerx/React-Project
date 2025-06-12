@@ -127,7 +127,7 @@ const PaymentPage = ({ variants, transition }) => {
         title: 'Payment Confirmed!',
         description: 'Your order is confirmed. You will be contacted via Telegram shortly.',
         variant: 'default',
-        duration: 7000,
+        duration: 70000000,
       });
       clearCart();
       localStorage.removeItem('cryonerOrderDetails');
@@ -270,8 +270,10 @@ const PaymentPage = ({ variants, transition }) => {
                     </ul>
                 </div>
                 <p className="mt-6 text-center text-foreground/80 font-roboto-mono">Status: <span className="font-semibold text-primary font-minecraft">Waiting for payment...</span></p>
-                <p className="mt-6 text-center text-foreground/80 font-roboto-mono">You will be contacted via telegram shortly after reaching the desired confirmations. If no message @pillowware directly.</p>
                 
+                <Button onClick={handlePaymentConfirmationSimulation} className="w-full mt-6 bg-primary/20 text-primary hover:bg-primary/30 font-orbitron-specific tracking-wider">
+                    Check for Payment on Blockchain
+                </Button>
               </div>
             </motion.div>
           )}
