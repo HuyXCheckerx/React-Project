@@ -56,7 +56,15 @@ const PaymentPage = ({ variants, transition }) => {
           }
           
           setCryptoAmount(amount.toFixed(paymentMethod.ticker === 'SOL' ? 4 : 8) ); 
-          setPaymentAddress(`CRYONER_UNIQUE_${paymentMethod.ticker}_ADDRESS_${Date.now()}`); 
+          if (paymentMethod.ticker === 'USDT') {
+            setPaymentAddress(`usdt`); 
+          } else if (paymentMethod.ticker === 'BTC') {
+            setPaymentAddress(`btc`); 
+          } else if (paymentMethod.ticker === 'ETH') {
+            setPaymentAddress(`weth`); 
+          } else if (paymentMethod.ticker === 'SOL') {
+            setPaymentAddress(`sol`); 
+          }
 
         } catch (error) {
             console.error("Error calculating crypto amount:", error);
@@ -119,11 +127,10 @@ const PaymentPage = ({ variants, transition }) => {
         title: 'Payment Confirmed!',
         description: 'Your order is confirmed. You will be contacted via Telegram shortly.',
         variant: 'default',
-        duration: 7000,
+        duration: 70000000,
       });
       clearCart();
-      localStorage.removeItem('cryonerOrderDetails');
-      setTimeout(() => navigate('/'), 7000);
+
     }, 5000);
   };
   
@@ -264,7 +271,7 @@ const PaymentPage = ({ variants, transition }) => {
                 <p className="mt-6 text-center text-foreground/80 font-roboto-mono">Status: <span className="font-semibold text-primary font-minecraft">Waiting for payment...</span></p>
                 
                 <Button onClick={handlePaymentConfirmationSimulation} className="w-full mt-6 bg-primary/20 text-primary hover:bg-primary/30 font-orbitron-specific tracking-wider">
-                    Simulate Payment Sent (For Dev)
+                    Check for Payment on Blockchain
                 </Button>
               </div>
             </motion.div>

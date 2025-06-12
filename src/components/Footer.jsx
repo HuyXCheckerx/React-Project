@@ -15,7 +15,7 @@ const Footer = () => {
               <span className="text-3xl font-bold gradient-text font-orbitron title-animate">Cryoner</span>
             </div>
             <p className="text-sm text-center md:text-left font-roboto-mono">
-              Elite cyber solutions for a decentralized future.
+              Most Reliable and Fastest Parsers/Services/Tools on the Market.
             </p>
           </div>
 
@@ -38,12 +38,7 @@ const Footer = () => {
                   <span>Telegram: @pillowware</span>
                 </a>
               </li>
-              <li>
-                <span className="flex items-center space-x-2 opacity-70 cursor-not-allowed" title="Coming Soon">
-                  <Twitch size={18} />
-                  <span>Twitch (Soon)</span>
-                </span>
-              </li>
+              
             </ul>
           </div>
 

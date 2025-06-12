@@ -26,20 +26,11 @@ const TermsPage = ({ variants, transition }) => {
         "Cryoner Project is not responsible for fluctuations in cryptocurrency values. The amount due in cryptocurrency will be determined at the time of transaction.",
       ]
     },
-    {
-      icon: Award,
-      title: "Quality Assurance & Service Disclaimer",
-      color: "text-blue-400",
-      points: [
-        "Cryoner Project tools and services are provided 'as-is' and 'as-available' without warranties of any kind, express or implied, including but not limited to fitness for a particular purpose, non-infringement, or continuous availability.",
-        "While we strive for excellence, Cryoner Project does not guarantee that services will be error-free, uninterrupted, or that all features will meet individual specific requirements.",
-        "We continuously monitor and update our systems. However, the dynamic nature of technology means that performance and compatibility can vary.",
-      ]
-    },
+    
     {
       icon: Users,
       title: "Support & Warranty Policy",
-      color: "text-green-400",
+      color: "text-red-400",
       points: [
         "Support is provided for premium services through designated secure channels (e.g., Telegram: @pillowware). Response times may vary.",
         "Support is limited to the direct functionality of Cryoner Project services and does not extend to third-party applications or user-specific system configurations.",

@@ -25,7 +25,7 @@ const VouchesPage = ({ variants, transition }) => {
             <ThumbsUp size={48} className="mx-auto mb-4 text-primary" />
             <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text tracking-tight title-animate">Client Testimonials & Vouches</h1>
             <p className="text-xl text-foreground/70 max-w-3xl mx-auto font-roboto-mono">
-              Hear from professionals who trust Cryoner Project for their critical digital needs. Real feedback from verified users.
+              Hear from Past Clients of Cryoner Project, and see what they have to say about us. More vouches on our telegram channels
             </p>
           </motion.div>
 
