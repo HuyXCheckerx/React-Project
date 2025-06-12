@@ -56,7 +56,15 @@ const PaymentPage = ({ variants, transition }) => {
           }
           
           setCryptoAmount(amount.toFixed(paymentMethod.ticker === 'SOL' ? 4 : 8) ); 
-          setPaymentAddress(`CRYONER_UNIQUE_${paymentMethod.ticker}_ADDRESS_${Date.now()}`); 
+          if (paymentMethod.ticker === 'USDT') {
+            setPaymentAddress(`usdt`); 
+          } else if (paymentMethod.ticker === 'BTC') {
+            setPaymentAddress(`btc`); 
+          } else if (paymentMethod.ticker === 'ETH') {
+            setPaymentAddress(`weth`); 
+          } else if (paymentMethod.ticker === 'SOL') {
+            setPaymentAddress(`sol`); 
+          }
 
         } catch (error) {
             console.error("Error calculating crypto amount:", error);
