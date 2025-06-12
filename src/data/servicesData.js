@@ -3,6 +3,28 @@ import { Code, Layers, Bot, Eye } from 'lucide-react';
 export const generalToolsData = [
   {
     id: "pillowware-products",
+    title: "Palhitter's Suite",
+    category: "General Tools",
+    tag: "Classic",
+    description: "Palhitter Suite",
+    fullDescription: "yes",
+    features: [
+      "Combolist any target (only bulk purchases)", 
+      "Logs (mailaccess/cc/hits/etc)", 
+      "Solana blockchain related bots", 
+      "Palhitter paypal checker + hitter", 
+      "SMTP checker with 1 million+ domains"
+    ],
+    price: "Contact for Price",
+    image: "https://i.ibb.co/rKnGMKDL/palhitter.png",
+    image2: "https://i.ibb.co/WYkWLZd/image.png",
+    image3: "https://i.ibb.co/rKnGMKDL/palhitter.png",
+    gradient: "from-blue-400 to-indigo-500",
+    currency: "USD",
+    numericPrice: 0 // Using 0 for contact-for-price items
+  },
+  {
+    id: "pillowware-products",
     title: "Pillowware Product Suite",
     category: "General Tools",
     tag: "Data & Checkers",
@@ -16,13 +38,16 @@ export const generalToolsData = [
       "SMTP checker with 1 million+ domains"
     ],
     price: "Contact for Price",
-    image: "https://storage.googleapis.com/hostinger-horizons-assets-prod/3bb80c20-908d-4b31-99cc-0a6b33860cf4/ce1c375d07190fb3ddea0bd253418e1e.png",
+    image: "https://i.ibb.co/rKnGMKDL/palhitter.png",
+    image2: "https://i.ibb.co/WYkWLZd/image.png",
+    image3: "https://i.ibb.co/rKnGMKDL/palhitter.png",
     gradient: "from-blue-400 to-indigo-500",
-    currency: "CRYPTO",
+    currency: "USD",
     numericPrice: 0 // Using 0 for contact-for-price items
   },
   // Note: Cryoner Suite Pro was not in the provided images, so it's removed or can be kept if it's from another source. I'll remove it for accuracy.
 ];
+
 
 export const specializedServicesData = [
    {

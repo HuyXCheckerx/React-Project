@@ -82,6 +82,16 @@ const ServicesPage = ({ variants, transition }) => {
                 alt={service.title}
                 className="w-full h-auto object-cover rounded-xl shadow-xl aspect-video border border-border/40"
               />
+              <img 
+                src={service.image2} 
+                alt={service.title}
+                className="w-full h-auto object-cover rounded-xl shadow-xl aspect-video border border-border/40"
+              />
+              <img 
+                src={service.image3} 
+                alt={service.title}
+                className="w-30 h-30 object-cover rounded-xl shadow-xl aspect-video border border-border/40"
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 40 }}

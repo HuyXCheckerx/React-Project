@@ -13,7 +13,7 @@ const ServiceCard = ({ service, onAddToCart, isHomepageCard = false }) => {
           src={service.image} 
           alt={service.title}
           class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-         src="https://images.unsplash.com/photo-1690721606848-ac5bdcde45ea" />
+         />
         <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient || 'from-primary/50 to-accent/50'} opacity-20 group-hover:opacity-10 transition-opacity duration-400`}></div>
         {service.tag && (
           <span className="absolute top-3 right-3 bg-accent/80 text-accent-foreground text-xs font-bold px-2.5 py-1 rounded-full shadow-md font-orbitron-specific tracking-wider">
