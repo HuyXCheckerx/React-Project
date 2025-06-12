@@ -130,8 +130,7 @@ const PaymentPage = ({ variants, transition }) => {
         duration: 70000000,
       });
       clearCart();
-      localStorage.removeItem('cryonerOrderDetails');
-      setTimeout(() => navigate('/'), 7000);
+
     }, 5000);
   };
   
