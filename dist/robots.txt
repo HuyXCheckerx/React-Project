@@ -1,4 +1,3 @@
+# Disallow all crawlers from accessing the demo video file
 User-agent: *
-Allow: /
-
-Sitemap: http://localhost/sitemap.xml
+Disallow:
