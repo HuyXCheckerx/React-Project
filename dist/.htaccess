@@ -7,5 +7,5 @@
 </IfModule>
 
 <IfModule mod_headers.c>
-  Header set X-Powered-By "PerytheGOAT"
+  Header set X-Powered-By "Cryoner Projects"
 </IfModule>
