@@ -104,6 +104,25 @@ const HomePage = ({ variants, transition }) => {
         <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-background to-transparent"></div>
       </section>
       
+      {/* Product Demo Video Section */}
+      <section className="flex flex-col justify-center items-center py-16 md:py-24 bg-transparent">
+        <h2 className="text-4xl md:text-5xl font-bold mb-10 gradient-text tracking-wide title-animate font-orbitron-specific text-center">
+          How Things Work
+        </h2>
+        <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-primary/60 bg-black/80 group">
+          <video
+            className="w-full h-auto object-cover rounded-3xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-primary/40"
+            src="/demo.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/video-poster.jpg"
+            style={{ boxShadow: '0 0 40px 0 rgba(0, 183, 255, 0.25)' }}
+          />
+        </div>
+      </section>
+      
       {/* Summarized Features Section */}
        <Section id="overview" title="OVERVIEW" icon={Layers}>
         <p className="text-center text-lg text-foreground/70 mb-12 max-w-3xl mx-auto font-roboto-mono">

@@ -70,6 +70,7 @@ const TermsPage = ({ variants, transition }) => {
     >
       <section id="terms" className="py-20 md:py-28 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -79,7 +80,7 @@ const TermsPage = ({ variants, transition }) => {
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text tracking-tight title-animate">Terms of Service</h1>
             <p className="text-xl text-foreground/70 max-w-2xl mx-auto font-roboto-mono">
-              Our commitment to professional standards, ethical use, and clear service agreements.
+              Read this carefully before purchasing any services or make any deals to avoid wasting both of our time.
             </p>
           </motion.div>
 
@@ -89,8 +90,11 @@ const TermsPage = ({ variants, transition }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'circOut' }}
             viewport={{ once: true }}
-          >
-            <div className="space-y-10">
+          ><img 
+          src="/terms.png"
+          className="w-full h-full object-contain rounded-xl shadow-xl border border-border/40 mx-auto"
+        />
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto">
               {termsSections.map((section, index) => (
                 <motion.div 
                   key={section.title}
