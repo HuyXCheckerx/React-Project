@@ -1,4 +1,5 @@
-
+# Disallow all crawlers from accessing the demo video file
 User-agent: *
+Disallow: /demo.mp4
 Disallow: 
 Disallow: /cgi-bin/
