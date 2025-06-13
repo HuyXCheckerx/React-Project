@@ -99,7 +99,7 @@ const ServicesPage = ({ variants, transition }) => {
               transition={{ duration: 0.8, ease: 'circOut', delay: 0.15 }}
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-5 gradient-text tracking-tight title-animate">{service.title}</h1>
-              <p className="text-lg text-foreground/80 mb-7 font-roboto-mono leading-relaxed">{service.fullDescription || service.description}</p>
+              <p className="text-lg text-foreground/80 mb-7 font-roboto-mono leading-relaxed mx-auto">{service.fullDescription || service.description}</p>
               <span className={`text-3xl font-bold bg-gradient-to-r ${service.gradient || 'from-primary to-accent'} bg-clip-text text-transparent mb-8 block font-minecraft`}>
                 {service.price} {service.currency === 'SOL' && service.price.toLowerCase() !== 'contact for quote' && <span className="text-xl"> SOL</span>}
               </span>

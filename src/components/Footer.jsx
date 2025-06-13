@@ -15,7 +15,7 @@ const Footer = () => {
               <span className="text-3xl font-bold gradient-text font-orbitron title-animate">Cryoner</span>
             </div>
             <p className="text-sm text-center md:text-left font-roboto-mono">
-              Most Reliable and Fastest Parsers/Services/Tools on the Market.
+              Most Reliable and Fastest Google Proxyless Parsers/Services/Tools on the Market.
             </p>
           </div>
 
