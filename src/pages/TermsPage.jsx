@@ -90,28 +90,30 @@ const TermsPage = ({ variants, transition }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'circOut' }}
             viewport={{ once: true }}
-          ><img 
-          src="/terms.png"
-          className="w-full h-full object-contain rounded-xl shadow-xl border border-border/40 mx-auto"
-        />
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto">
+          >
+            <img 
+              src="/terms.png"
+              className="w-full h-full object-contain rounded-xl shadow-xl border border-border/40 mx-auto mb-8"
+            />
+            <div className="space-y-12">
               {termsSections.map((section, index) => (
                 <motion.div 
                   key={section.title}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: 'circOut' }}
                   viewport={{ once: true, amount: 0.2 }}
+                  className="border-b border-border/30 pb-8 last:border-b-0 last:pb-0"
                 >
-                  <h2 className={`text-2xl md:text-3xl font-semibold mb-5 flex items-center ${section.color} title-animate`}>
+                  <h2 className={`text-2xl md:text-3xl font-semibold mb-6 flex items-center ${section.color} title-animate`}>
                     <section.icon className={`mr-3.5 flex-shrink-0 ${section.color}`} size={28} />
                     {section.title}
                   </h2>
-                  <ul className="space-y-3.5 text-foreground/80 list-disc list-inside pl-2 font-roboto-mono text-sm md:text-base leading-relaxed">
+                  <div className="space-y-4 text-foreground/80 font-roboto-mono text-base leading-relaxed">
                     {section.points.map((point, idx) => (
-                      <li key={idx}>{point}</li>
+                      <p key={idx} className="text-justify">{point}</p>
                     ))}
-                  </ul>
+                  </div>
                 </motion.div>
               ))}
 

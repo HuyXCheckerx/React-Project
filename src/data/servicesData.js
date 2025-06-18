@@ -212,7 +212,9 @@ export const cryonerSolutionsData = [
       "Coded and optimized with Rust, one of the fastest coding language!"
     ],
     price: "$159.99 /lifetime",
-    image: "https://i.ibb.co/VMyhG11/cryoner-pro-terminal.png", // Placeholder image based on Cryoner visuals
+    image: "cryoner1.png", // Reusing existing image
+    image2: "cryoner2.png", // Reusing existing image
+    image3: "cryoner3.png", // Reusing existing image
     gradient: "from-green-600 to-teal-700",
     currency: "USD",
     numericPrice: 159.99

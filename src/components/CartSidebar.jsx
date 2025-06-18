@@ -72,7 +72,7 @@ const CartSidebar = () => {
                         src={item.image}
                         alt={item.title}
                         class="w-20 h-20 object-cover rounded-md border border-border/50"
-                       src="https://images.unsplash.com/photo-1642452222105-b2933e287da4" />
+                       />
                       <div className="flex-grow">
                         <h3 className="text-md font-semibold text-foreground font-orbitron">{item.title}</h3>
                         <p className="text-sm text-primary font-semibold font-roboto-mono">
