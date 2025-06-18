@@ -4,7 +4,7 @@ import { useParams, Link, useLocation } from 'react-router-dom';
 import ServiceCard from '@/components/ServiceCard';
 import { allServicesFlat, serviceCategories } from '@/data/servicesData';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, CheckCircle, ShoppingCart, MessageSquare, Layers, Code, Bot, Eye } from 'lucide-react';
+import { ArrowLeft, CheckCircle, ShoppingCart, MessageSquare, Layers, Code, Bot, Eye, ExternalLink } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useCart } from '@/contexts/CartContext';
 
@@ -35,6 +35,12 @@ const ServicesPage = ({ variants, transition }) => {
     });
   };
 
+  const handleContactRedirect = (service, platform) => {
+    if (service.contactInfo && service.contactInfo[platform]) {
+      window.open(service.contactInfo[platform], '_blank');
+    }
+  };
+
   if (serviceId) {
     const service = allServicesFlat.find(s => s.id === serviceId);
     if (!service) {
@@ -55,7 +61,8 @@ const ServicesPage = ({ variants, transition }) => {
     }
     
     const currentCategoryForBreadcrumb = serviceCategories.find(sc => sc.data.some(s => s.id === serviceId));
-
+    const isContactForPrice = service.price.toLowerCase().includes('contact for price') || service.price.toLowerCase().includes('contact for quote');
+    const hasContactInfo = service.contactInfo && (service.contactInfo.discord || service.contactInfo.telegram);
 
     return (
       <motion.div 
@@ -104,7 +111,7 @@ const ServicesPage = ({ variants, transition }) => {
                 {service.price} {service.currency === 'SOL' && service.price.toLowerCase() !== 'contact for quote' && <span className="text-xl"> SOL</span>}
               </span>
               <div className="flex flex-col sm:flex-row gap-4">
-                {service.price.toLowerCase() !== 'contact for quote' && typeof service.numericPrice === 'number' ? (
+                {!isContactForPrice && typeof service.numericPrice === 'number' ? (
                   <Button 
                     size="lg" 
                     className="bg-gradient-to-r from-primary to-accent hover:opacity-95 text-primary-foreground px-8 py-7 rounded-lg text-base shadow-lg font-orbitron-specific tracking-wider"
@@ -112,6 +119,27 @@ const ServicesPage = ({ variants, transition }) => {
                   >
                     <ShoppingCart className="mr-3" size={22} /> Add2Cart
                   </Button>
+                ) : isContactForPrice && hasContactInfo ? (
+                  <div className="flex flex-col sm:flex-row gap-4 w-full">
+                    {service.contactInfo.discord && (
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-blue-500 to-blue-600 hover:opacity-95 text-white px-8 py-7 rounded-lg text-base shadow-lg font-orbitron-specific tracking-wider"
+                        onClick={() => handleContactRedirect(service, 'discord')}
+                      >
+                        <ExternalLink className="mr-3" size={22} /> DISCORD
+                      </Button>
+                    )}
+                    {service.contactInfo.telegram && (
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:opacity-95 text-white px-8 py-7 rounded-lg text-base shadow-lg font-orbitron-specific tracking-wider"
+                        onClick={() => handleContactRedirect(service, 'telegram')}
+                      >
+                        <MessageSquare className="mr-3" size={22} /> TELEGRAM
+                      </Button>
+                    )}
+                  </div>
                 ) : (
                   <Button 
                     size="lg" 
@@ -121,14 +149,16 @@ const ServicesPage = ({ variants, transition }) => {
                      <MessageSquare className="mr-3" size={22} /> CONTACT FOR QUOTE
                   </Button>
                 )}
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="text-primary border-primary hover:bg-primary/10 hover:text-primary px-8 py-7 rounded-lg text-base font-orbitron-specific tracking-wider"
-                   onClick={() => toast({ title: "Inquiry", description: "Contact @pillowware on Telegram for more details."})}
-                >
-                  <MessageSquare className="mr-3" size={22} /> ENQ
-                </Button>
+                {!isContactForPrice && (
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="text-primary border-primary hover:bg-primary/10 hover:text-primary px-8 py-7 rounded-lg text-base font-orbitron-specific tracking-wider"
+                     onClick={() => toast({ title: "Inquiry", description: "Contact @pillowware on Telegram for more details."})}
+                  >
+                    <MessageSquare className="mr-3" size={22} /> ENQ
+                  </Button>
+                )}
               </div>
             </motion.div>
           </div>

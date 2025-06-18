@@ -57,13 +57,13 @@ const PaymentPage = ({ variants, transition }) => {
           
           setCryptoAmount(amount.toFixed(paymentMethod.ticker === 'SOL' ? 4 : 8) ); 
           if (paymentMethod.ticker === 'USDT') {
-            setPaymentAddress(`usdt`); 
+            setPaymentAddress(`TCfBoeKH32bo5skoTZwEnrYGXB1SArqNGD`); 
           } else if (paymentMethod.ticker === 'BTC') {
-            setPaymentAddress(`btc`); 
+            setPaymentAddress(`3AFg7Mvkjeh33U82dgt8MLh9SZKw3KZLQU`); 
           } else if (paymentMethod.ticker === 'ETH') {
-            setPaymentAddress(`weth`); 
+            setPaymentAddress(`0xcd9d62a1baeed132c930346fc760c525fab4201f`); 
           } else if (paymentMethod.ticker === 'SOL') {
-            setPaymentAddress(`sol`); 
+            setPaymentAddress(`6FNXjzqQidLFTUnZ3pQ68jDSsgz4UNj9BoemverpTNiC`); 
           }
 
         } catch (error) {
