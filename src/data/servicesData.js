@@ -69,7 +69,7 @@ export const generalToolsData = [
   },
   {
     id: "smtpscanner",
-    title: "STMP INbox Searcher",
+    title: "SMTP INbox Searcher",
     category: "General Tools",
     tag: "Lifetime",
     description: "Fastest smtp checker on the market",
@@ -81,7 +81,7 @@ export const generalToolsData = [
       "Coded and optimized with Rust, one of the fastest coding language!"
     ],
     price: "$89.99 /Lifetime",
-    image: "/smtp1.png",
+    image: "/smtp.png",
     image2: "/smtp2.png",
     image3: "/smtp3.png",
     gradient: "from-green-600 to-teal-700",
