@@ -1,32 +1,7 @@
 import { Code, Layers, Bot, Eye, Wrench } from 'lucide-react'; // Added Wrench icon for Cryoner Solutions
 
 export const generalToolsData = [
-  {
-    id: "palhitter-suite", // Unique ID for Palhitter's suite
-    title: "Palhitter's Suite",
-    category: "General Tools",
-    tag: "Data & Checkers", // More descriptive tag
-    description: "A comprehensive suite for data acquisition, including combolists, logs, a PayPal checker, and an SMTP checker.",
-    fullDescription: "It includes: Combolist for any target (available for bulk purchases only), high-quality Logs (mailaccess/cc/hits/etc), Solana blockchain related bots, a Palhitter PayPal checker + hitter, and an SMTP checker boasting a database of over 1 million+ domains. All products are delivered in crypto currency after confirmations. Please refer to our strict Terms of Service for warranty and delivery details, including the 10% precheck hitrate determination and no reselling policy.",
-    features: [
-      "Combolist any target (only bulk purchases)",
-      "Logs (mailaccess/cc/hits/etc)",
-      "Solana blockchain related bots",
-      "Palhitter paypal checker + hitter",
-      "SMTP checker with 1 million+ domains"
-    ],
-    price: "Contact for Price",
-    image: "https://i.ibb.co/rKnGMKDL/palhitter.png", // Reusing existing image
-    image2: "https://i.ibb.co/WYkWLZd/image.png", // Reusing existing image
-    image3: "https://i.ibb.co/rKnGMKDL/palhitter.png", // Reusing existing image
-    gradient: "from-blue-400 to-indigo-500",
-    currency: "USD", // Assuming USD for contact price, or simply omit currency for "Contact for Price"
-    numericPrice: 0, // Using 0 for contact-for-price items
-    contactInfo: {
-      discord: "https://discord.gg/pillowware",
-      telegram: "https://t.me/pillowware"
-    }
-  },
+  
   {
     id: "palhitter-lite",
     title: "Palhitter Lite",
@@ -41,9 +16,9 @@ export const generalToolsData = [
       "Coded and optimized with Rust, one of the fastest coding language!"
     ],
     price: "$129.99 /Weekly",
-    image: "/cryoner1.png",
-    image2: "/cryoner2.png",
-    image3: "/cryoner3.png",
+    image: "/pal1.png",
+    image2: "/pal2.png",
+    image3: "/pal3.png",
     gradient: "from-green-600 to-teal-700",
     currency: "USD",
     numericPrice: 129.99
@@ -63,12 +38,55 @@ export const generalToolsData = [
       "Coded and optimized with Rust, one of the fastest coding language!"
     ],
     price: "$329.99 /Lifetime",
-    image: "/cryoner1.png",
-    image2: "/cryoner2.png",
-    image3: "/cryoner3.png",
+    image: "/pal1.png",
+    image2: "/pal2.png",
+    image3: "/pal3.png",
     gradient: "from-green-600 to-teal-700",
     currency: "USD",
     numericPrice: 329.99
+  },
+  {
+    id: "Hotmailchecker",
+    title: "Hotmail Checker ",
+    category: "General Tools",
+    tag: "Lifetime",
+    description: "Proxyless hotmail inbox searcher",
+    fullDescription: "Checkaccounts with little to no proxy usage, fast and reliable",
+    features: [
+      "Almost no proxy bandwidth usage",
+      "Rustbased checker",
+      "Access to bi-daily updates",
+      "Most private apis",
+      "Coded and optimized with Rust, one of the fastest coding language!"
+    ],
+    price: "$89.99 /Lifetime",
+    image: "/hot.png",
+    image2: "/hot2.png",
+    image3: "/hot3.png",
+    gradient: "from-green-600 to-teal-700",
+    currency: "USD",
+    numericPrice: 89.99
+  },
+  {
+    id: "smtpscanner",
+    title: "STMP INbox Searcher",
+    category: "General Tools",
+    tag: "Lifetime",
+    description: "Fastest smtp checker on the market",
+    fullDescription: "Up to 20k CPM and little to 5% CPU usage!",
+    features: [
+
+      "Access to bi-daily updates",
+      "Most private apis",
+      "Coded and optimized with Rust, one of the fastest coding language!"
+    ],
+    price: "$89.99 /Lifetime",
+    image: "/smtp1.png",
+    image2: "/smtp2.png",
+    image3: "/smtp3.png",
+    gradient: "from-green-600 to-teal-700",
+    currency: "USD",
+    numericPrice: 89.99
   }
   // Removed the duplicate "Pillowware Product Suite" as "Palhitter's Suite" covers the same features from the TOS.
 ];
@@ -93,11 +111,32 @@ export const specializedServicesData = [
     currency: "USD", // Assuming USD for contact price, or simply omit currency for "Contact for Price"
     numericPrice: 0, // Using 0 for contact-for-price items
     contactInfo: {
-      discord: "https://discord.gg/pillowware",
+      discord: "https://discord.gg/q3XUbRth77",
       telegram: "https://t.me/pillowware"
     }},
     {
-    id: "wp-cpanel-dumping-tutor",
+    id: "jscvs", // Unique ID for Palhitter's suite
+    title: "Bulk JS Exploit",
+    category: "Specialized Services",
+    tag: "JSET", // More descriptive tag
+    description: "Bulk recent JS exploit, which can infect a large amount of devices.",
+    fullDescription: "Experienced members only, do not ask too many questions",
+    features: [
+
+    ],
+    price: "Contact for Price",
+    image: "/lfi.png", // Reusing existing image
+    image2: "/lfi.png", // Reusing existing image
+    image3: "/lfi.png", // Reusing existing image
+    gradient: "from-blue-400 to-indigo-500",
+    currency: "USD", // Assuming USD for contact price, or simply omit currency for "Contact for Price"
+    numericPrice: 0, // Using 0 for contact-for-price items
+    contactInfo: {
+      discord: "https://discord.gg/q3XUbRth77",
+      telegram: "https://t.me/pillowware"
+    }},
+    {
+    id: "wp-cpanel-dumping-tutor1",
     title: "WP/cPanel Dumping Tutor",
     category: "Specialized Services",
     tag: "Mentorship",
