@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Toaster } from '@/components/ui/toaster';
@@ -29,6 +29,33 @@ const App = () => {
     damping: 20,
     duration: 0.7,
   };
+
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
+    document.addEventListener('contextmenu', handleContextMenu);
+
+    const blockDevTools = (e) => {
+      // F12
+      if (e.keyCode === 123) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
+      if ((e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) ||
+          // Ctrl+U
+          (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+    document.addEventListener('keydown', blockDevTools);
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('keydown', blockDevTools);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground scroll-smooth font-roboto-mono">

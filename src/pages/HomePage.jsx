@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Zap, Shield, TrendingUp, Settings, Code, Bot, Layers, Eye } from 'lucide-react';
@@ -12,6 +12,24 @@ import { useToast } from '@/components/ui/use-toast';
 const HomePage = ({ variants, transition }) => {
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const handlePlayOnView = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    };
+    const observer = new window.IntersectionObserver(handlePlayOnView, { threshold: 0.5 });
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   const handleAddToCart = (service) => {
     if (service.price.toLowerCase() === 'contact for quote') {
@@ -109,16 +127,20 @@ const HomePage = ({ variants, transition }) => {
         <h2 className="text-4xl md:text-5xl font-bold mb-10 gradient-text tracking-wide title-animate font-orbitron-specific text-center">
           How Things Work
         </h2>
-        <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-primary/60 bg-black/80 group">
+        <div className="relative w-full max-w-[1920px] mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-primary/60 bg-black/80 group" style={{ minHeight: '540px' }}>
           <video
-            className="w-full h-auto object-cover rounded-3xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-primary/40"
+            ref={videoRef}
+            className="w-full h-[540px] md:h-[900px] object-cover rounded-3xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-primary/40"
+            width="1920"
+            height="900"
             src="/demo.mp4"
-            autoPlay
             loop
-            muted
             playsInline
+            muted
+            autoPlay
             poster="/video-poster.jpg"
             style={{ boxShadow: '0 0 40px 0 rgba(0, 183, 255, 0.25)' }}
+            onContextMenu={e => e.preventDefault()}
           />
         </div>
       </section>
