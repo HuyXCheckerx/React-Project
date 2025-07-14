@@ -8,6 +8,8 @@ import { serviceCategories } from '@/data/servicesData';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/components/ui/use-toast';
+import Beams from '@/Beams';
+
 
 const HomePage = ({ variants, transition }) => {
   const { addToCart } = useCart();
@@ -78,7 +80,24 @@ const HomePage = ({ variants, transition }) => {
     >
       {/* Hero Section */}
       <section id="home" className="min-h-[80vh] flex items-center justify-center text-center py-24 md:py-32 hero-gradient relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        {/* Background Layer 1: Grid Pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
+        
+        {/* Background Layer 2: Beams (NEWLY ADDED) */}
+        <div className="absolute inset-0 z-0 opacity-15">
+            <Beams
+                beamWidth={3}
+                beamHeight={30}
+                beamNumber={20}
+                lightColor="#fff000"
+                speed={2}
+                noiseIntensity={3}
+                scale={0.2}
+                rotation={30}
+            />
+        </div>
+        
+        {/* Foreground Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <motion.h1
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-8 gradient-text tracking-tighter title-animate"
@@ -96,7 +115,7 @@ const HomePage = ({ variants, transition }) => {
           >
             Optimized and 
             <br />
-            Made with &lt;3 <span className="text-primary font-semibold">@pillowware</span>.
+            Made with &#60;3 <span className="text-primary font-semibold">@pillowware</span>.
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row gap-5 justify-center items-center"

@@ -13,6 +13,9 @@ import CheckoutPage from '@/pages/CheckoutPage';
 import PaymentPage from '@/pages/PaymentPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import CartSidebar from '@/components/CartSidebar';
+import Beams from './Beams';
+
+
 
 const App = () => {
   const location = useLocation();
@@ -58,7 +61,8 @@ const App = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground scroll-smooth font-roboto-mono">
+    <div className="min-h-screen bg-background text-foreground scroll-smooth font-roboto-mono relative">
+      
       <Toaster />
       <Navbar />
       <CartSidebar />

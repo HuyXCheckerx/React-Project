@@ -77,6 +77,7 @@ const ServicesPage = ({ variants, transition }) => {
             </Button>
           </Link>
         </div>
+        
         <div className="bg-card p-8 md:p-12 rounded-2xl shadow-2xl border border-border/60">
           <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
             <motion.div 
@@ -100,6 +101,7 @@ const ServicesPage = ({ variants, transition }) => {
                 className="w-30 h-30 object-cover rounded-xl shadow-xl aspect-video border border-border/40"
               />
             </motion.div>
+            
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}

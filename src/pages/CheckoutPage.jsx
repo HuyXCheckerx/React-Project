@@ -13,6 +13,7 @@ import SolanaLogo from '@/assets/solana-logo.svg';
 import BitcoinLogo from '@/assets/bitcoin-logo.svg';
 import EthereumLogo from '@/assets/ethereum-logo.svg';
 import TetherLogo from '@/assets/tether-logo.svg';
+import Squares from '@/Squares'; // <<< 1. IMPORT ADDED
 
 const cryptoOptions = [
   { id: 'sol', name: 'Solana', ticker: 'SOL', logo: SolanaLogo, network: 'Solana Network' },
@@ -162,9 +163,22 @@ const CheckoutPage = ({ variants, transition }) => {
       exit="out"
       variants={variants}
       transition={transition}
-      className="min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 bg-background"
+      // <<< 2. ADDED `relative` TO MAKE THIS THE POSITIONING CONTEXT
+      className="min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 bg-background relative overflow-hidden"
     >
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* <<< 3. ADDED SQUARES BACKGROUND LAYER */}
+      <div className="absolute inset-0 z-0 opacity-10">
+        <Squares 
+          speed={0.5} 
+          squareSize={40}
+          direction='diagonal'
+          borderColor='#fff'
+          hoverFillColor='#000'
+        />
+      </div>
+
+      {/* <<< 4. ADDED `relative z-10` TO PLACE CONTENT ON TOP OF BACKGROUND */}
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -174,8 +188,9 @@ const CheckoutPage = ({ variants, transition }) => {
             <h1 className="text-4xl md:text-5xl font-bold gradient-text tracking-tight title-animate">Checkout</h1>
             <p className="text-lg text-foreground/70 mt-2 font-roboto-mono">Finalize your order and select payment method.</p>
           </div>
-
-          <div className="bg-card p-6 sm:p-8 rounded-2xl shadow-2xl border border-border/50 mb-8">
+          
+          {/* All the content below will now sit on top of the Squares background */}
+          <div className="bg-card/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-2xl border border-border/50 mb-8">
             <h2 className="text-2xl font-semibold text-foreground mb-6 title-animate">Order Summary</h2>
             {cart.length > 0 ? (
               <div className="space-y-3 mb-6">
@@ -210,7 +225,7 @@ const CheckoutPage = ({ variants, transition }) => {
           </div>
           
 
-          <div className="bg-card p-6 sm:p-8 rounded-2xl shadow-2xl border border-border/50">
+          <div className="bg-card/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-2xl border border-border/50">
             <h2 className="text-2xl font-semibold text-foreground mb-6 title-animate">Contact Information</h2>
             <div className="space-y-6 mb-8">
               <div>
