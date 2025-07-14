@@ -93,6 +93,69 @@ export const generalToolsData = [
 
 
 export const specializedServicesData = [
+  {
+    id: "wp-cpanel-carding-tutor1",
+    title: "WP/cPanel Carding Tutor With Cryoner PRO",
+    category: "Specialized Services",
+    tag: "Mentorship",
+    description: "A complete solution and mentorship for startup sellers, stockers, and dumpers.",
+    fullDescription: "Same as wp/cpanel combolist making tutor, but this guide will dive deep into exploiting specifically Credit cards. After which can be carded or used on online ecommerce sites.",
+    features: [
+      "12 private VC sessions (Discord/Tele)",
+      "The Newest 0day to exploit databases(WP/Cpanel)",
+      "Training with Paid tools, proxies and everything you need",
+      "License to starter tools necessary for basics",
+      "Complete guide to Wp/cpanel Cracking",
+      "1 Paid Tool requested by user (any paid checker)",
+      "Dedicated 16/128GBs RAM/GPU VPS",
+      "Rotating proxies & Private ebook",
+
+      "Configs for Openbullet",
+      
+      "7 private Detailed demonstration videos",
+      "Introduction to a private marketplace"
+    ],
+    price: "$449.99 /Onetime", // Price not listed on banner
+    image: "/cryonerpro.png", // Reusing existing image
+    image2: "/tutor1.png", // Reusing existing image
+    image3: "/tutor2.jpg", // Reusing existing image
+    gradient: "from-orange-500 to-amber-500",
+    currency: "USD",
+    numericPrice: 449.99
+    
+  },
+  {
+  id: "wp-cpanel-dumping-tutor1",
+    title: "WP/cPanel Dumping Tutor With Cryoner PRO",
+    category: "Specialized Services",
+    tag: "Mentorship",
+    description: "A complete solution and mentorship for startup sellers, stockers, and dumpers.",
+    fullDescription: "AIO (All-in-one) tutor designed for future stockers/suppliers or independent crackers. Taking this tutor will guarantee you the ability to make the highest quality combolist on the market, as well as other skills. After the tutor, you can either work with me or separately, I will still help you with leads to customers etc.",
+    features: [
+      "12 private VC sessions (Discord/Tele)",
+      "The Newest 0day to exploit databases(WP/Cpanel)",
+      "Training with Paid tools, proxies and everything you need",
+      "License to starter tools necessary for basics",
+      "Complete guide to Wp/cpanel Cracking",
+      "1 Paid Tool requested by user (any paid checker)",
+      "Dedicated 16/128GBs RAM/GPU VPS",
+      "Rotating proxies & Private ebook",
+
+      "Configs for Openbullet",
+      
+      "7 private Detailed demonstration videos",
+      "Introduction to a private marketplace"
+    ],
+    price: "$424.99 /Onetime", // Price not listed on banner
+    image: "/cryonerpro.png", // Reusing existing image
+    image2: "/tutor1.png", // Reusing existing image
+    image3: "/tutor2.jpg", // Reusing existing image
+
+    gradient: "from-orange-500 to-amber-500",
+    currency: "USD",
+    numericPrice: 424.99
+    
+  },
    {
     id: "lfirfi", // Unique ID for Palhitter's suite
     title: "LFI-RFI EXPLOIT",
@@ -198,69 +261,7 @@ export const specializedServicesData = [
     numericPrice: 299.99
     
   },
-  {
-    id: "wp-cpanel-carding-tutor1",
-    title: "WP/cPanel Carding Tutor With Cryoner PRO",
-    category: "Specialized Services",
-    tag: "Mentorship",
-    description: "A complete solution and mentorship for startup sellers, stockers, and dumpers.",
-    fullDescription: "Same as wp/cpanel combolist making tutor, but this guide will dive deep into exploiting specifically Credit cards. After which can be carded or used on online ecommerce sites.",
-    features: [
-      "12 private VC sessions (Discord/Tele)",
-      "The Newest 0day to exploit databases(WP/Cpanel)",
-      "Training with Paid tools, proxies and everything you need",
-      "License to starter tools necessary for basics",
-      "Complete guide to Wp/cpanel Cracking",
-      "1 Paid Tool requested by user (any paid checker)",
-      "Dedicated 16/128GBs RAM/GPU VPS",
-      "Rotating proxies & Private ebook",
-
-      "Configs for Openbullet",
-      
-      "7 private Detailed demonstration videos",
-      "Introduction to a private marketplace"
-    ],
-    price: "$449.99 /Onetime", // Price not listed on banner
-    image: "/cryonerpro.png", // Reusing existing image
-    image2: "/tutor1.png", // Reusing existing image
-    image3: "/tutor2.jpg", // Reusing existing image
-    gradient: "from-orange-500 to-amber-500",
-    currency: "USD",
-    numericPrice: 449.99
-    
-  },
-  {
-  id: "wp-cpanel-dumping-tutor1",
-    title: "WP/cPanel Dumping Tutor With Cryoner PRO",
-    category: "Specialized Services",
-    tag: "Mentorship",
-    description: "A complete solution and mentorship for startup sellers, stockers, and dumpers.",
-    fullDescription: "AIO (All-in-one) tutor designed for future stockers/suppliers or independent crackers. Taking this tutor will guarantee you the ability to make the highest quality combolist on the market, as well as other skills. After the tutor, you can either work with me or separately, I will still help you with leads to customers etc.",
-    features: [
-      "12 private VC sessions (Discord/Tele)",
-      "The Newest 0day to exploit databases(WP/Cpanel)",
-      "Training with Paid tools, proxies and everything you need",
-      "License to starter tools necessary for basics",
-      "Complete guide to Wp/cpanel Cracking",
-      "1 Paid Tool requested by user (any paid checker)",
-      "Dedicated 16/128GBs RAM/GPU VPS",
-      "Rotating proxies & Private ebook",
-
-      "Configs for Openbullet",
-      
-      "7 private Detailed demonstration videos",
-      "Introduction to a private marketplace"
-    ],
-    price: "$424.99 /Onetime", // Price not listed on banner
-    image: "/cryonerpro.png", // Reusing existing image
-    image2: "/tutor1.png", // Reusing existing image
-    image3: "/tutor2.jpg", // Reusing existing image
-
-    gradient: "from-orange-500 to-amber-500",
-    currency: "USD",
-    numericPrice: 424.99
-    
-  },
+  
   
 ];
 
