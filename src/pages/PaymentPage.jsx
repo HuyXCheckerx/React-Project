@@ -300,8 +300,8 @@ const PaymentPage = ({ variants, transition }) => {
               className="text-center py-20"
             >
               <CheckCircle className="h-20 w-20 text-green-400 mx-auto mb-6" />
-              <h2 className="text-3xl font-semibold text-green-400 mb-3 title-animate">Payment Confirmed!</h2>
-              <p className="text-foreground/80 mb-2 font-roboto-mono">Your order for <strong className="text-primary font-minecraft">{orderDetails.items.map(i => i.title).join(', ')}</strong> is being successful.</p>
+              <h2 className="text-3xl font-semibold text-green-400 mb-3 title-animate">Order Confirmed!</h2>
+              <p className="text-foreground/80 mb-2 font-roboto-mono">Your order for <strong className="text-primary font-minecraft">{orderDetails.items.map(i => i.title).join(', ')}</strong> is Confirmed.</p>
               <p className="text-foreground/80 mb-2 font-roboto-mono">Please wait for our gateway to process the payment. When the payment reach <strong className="text-primary font-minecraft">5</strong> confirmations:</p>
               <p className="text-foreground/70 mb-6 font-roboto-mono">You will be contacted on Telegram (<strong className="text-primary font-minecraft">{orderDetails.telegramHandle}</strong>) shortly with delivery details.</p>
               <p className="text-foreground/80 mb-2 font-roboto-mono">If there are no delivery after an hour, please contact <strong className="text-primary font-minecraft">@pillowware</strong> on telegram</p>

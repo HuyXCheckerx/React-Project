@@ -9,6 +9,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/components/ui/use-toast';
 import Beams from '@/Beams';
+import GradientText from '@/GradientText'
+import CountUp from '@/CountUp'
+
+
 
 
 const HomePage = ({ variants, transition }) => {
@@ -117,6 +121,34 @@ const HomePage = ({ variants, transition }) => {
             <br />
             Made with &#60;3 <span className="text-primary font-semibold">@pillowware</span>.
           </motion.p>
+          <motion.p
+            className="text-xl md:text-2xl text-foreground/80 mb-12 max-w-3xl mx-auto font-roboto-mono"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: 'circOut', delay: 0.4 }}
+          >
+          <GradientText
+  colors={["#8b0000","#dc143c"]}
+  animationSpeed={2}
+  showBorder={false}
+  className="custom-class"
+>
+<CountUp
+  from={0}
+  to={260}
+  separator=","
+  direction="up"
+  duration={1}
+  className="count-up-text"
+/>+ </GradientText><GradientText
+  colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+  animationSpeed={5}
+  showBorder={false}
+  className="custom-class"
+>
+Happy customers and still counting
+</GradientText>
+</motion.p>
           <motion.div
             className="flex flex-col sm:flex-row gap-5 justify-center items-center"
             initial={{ opacity: 0, y: 30 }}

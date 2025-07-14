@@ -381,6 +381,28 @@ export const cryonerSolutionsData = [
     gradient: "from-green-600 to-teal-700",
     currency: "USD",
     numericPrice: 159.99
+  },
+  {
+    id: "cryoner-elite",
+    title: "Cryoner Elite",
+    category: "Cryoner Solutions",
+    tag: "Lifetime Access",
+    description: "Designed for experienced hackers only, with a range of powerful pentesting tools.",
+    fullDescription: "Everything a Professional Panel must have, with lighting speed.",
+    features: [
+      "All Cryoner Pro,Enterprise and Starter Features",
+      "Port scanner, wiresniff, netsniff, portdeg, etc",
+      "BOLA, LFIRFI, JSEXPLOIT, etc",
+      "Coded and optimized with Rust, one of the fastest coding language!",
+      "Daily updates"
+    ],
+    price: "$2399.99 /lifetime",
+    image: "/cryoner1.png",
+    image2: "/cryoner2.png",
+    image3: "/cryoner3.png",
+    gradient: "from-green-600 to-teal-700",
+    currency: "USD",
+    numericPrice: 2399.99
   }
 ];
 
