@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 import { CartContext } from '@/contexts/CartContext';
-import { ArrowLeft, Loader2, Send, Mail, CheckCircle, XCircle } from 'lucide-react';
+import { ArrowLeft, Loader2, Send, Mail, CheckCircle, XCircle, Tag, Check, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 import SolanaLogo from '@/assets/solana-logo.svg';
@@ -22,6 +22,16 @@ const cryptoOptions = [
   { id: 'usdt_trc20', name: 'Tether', ticker: 'USDT', logo: TetherLogo, network: 'Tron (TRC20)' },
 ];
 
+// Coupon codes database - you can customize this
+const COUPON_CODES = {
+  'WELCOME10': { discount: 10, type: 'percentage', description: 'Welcome discount' },
+  'SAVE20': { discount: 20, type: 'percentage', description: '20% off your order' },
+  'FLAT5': { discount: 5, type: 'fixed', description: '$5 off your order' },
+  'FLAT10': { discount: 10, type: 'fixed', description: '$10 off your order' },
+  'HALF50': { discount: 50, type: 'percentage', description: '50% off your order' },
+  'NEWUSER': { discount: 15, type: 'percentage', description: 'New user discount' },
+};
+
 const CheckoutPage = ({ variants, transition }) => {
   const { cart, getCartTotalUSD, solPriceUSD } = useContext(CartContext); 
   const [telegramHandle, setTelegramHandle] = useState('');
@@ -29,11 +39,30 @@ const CheckoutPage = ({ variants, transition }) => {
   const [selectedCrypto, setSelectedCrypto] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState('');
+  
+  // Coupon code states
+  const [couponCode, setCouponCode] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
 
   const { toast } = useToast();
   const navigate = useNavigate();
 
   const totalUSD = getCartTotalUSD();
+
+  // Calculate discount and final total
+  const calculateDiscount = () => {
+    if (!appliedCoupon || !totalUSD) return 0;
+    
+    if (appliedCoupon.type === 'percentage') {
+      return (totalUSD * appliedCoupon.discount) / 100;
+    } else {
+      return Math.min(appliedCoupon.discount, totalUSD); // Fixed amount, but don't go below 0
+    }
+  };
+
+  const discountAmount = calculateDiscount();
+  const finalTotal = totalUSD ? totalUSD - discountAmount : 0;
 
   const handleTelegramChange = (e) => {
     let value = e.target.value;
@@ -75,6 +104,55 @@ const CheckoutPage = ({ variants, transition }) => {
     return true;
   };
 
+  // Coupon code validation and application
+  const handleApplyCoupon = async () => {
+    if (!couponCode.trim()) {
+      toast({
+        title: 'Coupon Code Required',
+        description: 'Please enter a coupon code.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsApplyingCoupon(true);
+
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 800));
+
+    const upperCode = couponCode.trim().toUpperCase();
+    const coupon = COUPON_CODES[upperCode];
+
+    if (coupon) {
+      setAppliedCoupon({
+        code: upperCode,
+        ...coupon
+      });
+      toast({
+        title: 'Coupon Applied!',
+        description: `${coupon.description} - ${coupon.type === 'percentage' ? `${coupon.discount}% off` : `$${coupon.discount} off`}`,
+        variant: 'default',
+      });
+    } else {
+      toast({
+        title: 'Invalid Coupon Code',
+        description: 'The coupon code you entered is not valid.',
+        variant: 'destructive',
+      });
+    }
+
+    setIsApplyingCoupon(false);
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponCode('');
+    toast({
+      title: 'Coupon Removed',
+      description: 'Coupon has been removed from your order.',
+      variant: 'default',
+    });
+  };
 
   const handleProceedToPayment = async () => {
     if (!validateTelegramHandle() || !validateEmail()) {
@@ -108,7 +186,6 @@ const CheckoutPage = ({ variants, transition }) => {
         return;
     }
 
-
     setIsProcessing(true);
 
     const orderDetails = {
@@ -121,6 +198,9 @@ const CheckoutPage = ({ variants, transition }) => {
         numericPrice: item.numericPrice
       })),
       totalUSD: totalUSD,
+      discountAmount: discountAmount,
+      finalTotal: finalTotal,
+      appliedCoupon: appliedCoupon,
       telegramHandle,
       email: email || null,
       paymentMethod: selectedCrypto,
@@ -128,7 +208,6 @@ const CheckoutPage = ({ variants, transition }) => {
       timestamp: new Date().toISOString(),
     };
 
-    
     localStorage.setItem('cryonerOrderDetails', JSON.stringify(orderDetails));
 
     setTimeout(() => {
@@ -154,7 +233,6 @@ const CheckoutPage = ({ variants, transition }) => {
       </motion.div>
     );
   }
-
 
   return (
     <motion.div
@@ -207,17 +285,101 @@ const CheckoutPage = ({ variants, transition }) => {
                     </span>
                   </div>
                 ))}
-                <div className="border-t border-border/50 pt-3 mt-3 flex justify-between items-center font-semibold">
-                  <span className="text-foreground text-lg font-roboto-mono">Grand Total (USD)</span>
-                  <span className="text-primary text-lg font-minecraft">
-                    {totalUSD === null ? 'Calculating...' : `~${totalUSD.toFixed(2)}`}
-                  </span>
+                
+                {/* Coupon Code Section */}
+                <div className="border-t border-border/50 pt-4 mt-4">
+                  <div className="flex flex-col sm:flex-row gap-3 mb-4">
+                    <div className="flex-1">
+                      <Label htmlFor="coupon" className="text-foreground/80 mb-1.5 flex items-center font-roboto-mono text-sm">
+                        <Tag size={14} className="mr-2 text-primary" /> Coupon Code
+                      </Label>
+                      <Input
+                        id="coupon"
+                        type="text"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value)}
+                        placeholder="Enter coupon code"
+                        className="bg-input border-border focus:border-primary font-roboto-mono text-sm"
+                        disabled={isApplyingCoupon}
+                      />
+                    </div>
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={handleApplyCoupon}
+                        disabled={isApplyingCoupon || !couponCode.trim()}
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground font-roboto-mono text-sm"
+                        size="sm"
+                      >
+                        {isApplyingCoupon ? (
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                          <Check className="mr-2 h-4 w-4" />
+                        )}
+                        Apply
+                      </Button>
+                      {appliedCoupon && (
+                        <Button
+                          onClick={handleRemoveCoupon}
+                          variant="outline"
+                          className="border-destructive text-destructive hover:bg-destructive/10 font-roboto-mono text-sm"
+                          size="sm"
+                        >
+                          <X className="mr-2 h-4 w-4" />
+                          Remove
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Applied Coupon Display */}
+                  {appliedCoupon && (
+                    <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3 mb-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <CheckCircle className="text-green-500 mr-2 h-4 w-4" />
+                          <span className="text-green-600 font-medium font-roboto-mono text-sm">
+                            {appliedCoupon.code} - {appliedCoupon.description}
+                          </span>
+                        </div>
+                        <span className="text-green-600 font-bold font-minecraft">
+                          {appliedCoupon.type === 'percentage' ? `${appliedCoupon.discount}% OFF` : `$${appliedCoupon.discount} OFF`}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
-                 {cart.some(item => item.currency === 'SOL') && solPriceUSD && (
+
+                {/* Price Breakdown */}
+                <div className="border-t border-border/50 pt-3 mt-3 space-y-2">
+                  <div className="flex justify-between items-center text-sm font-roboto-mono">
+                    <span className="text-foreground/80">Subtotal</span>
+                    <span className="text-foreground font-minecraft">
+                      {totalUSD === null ? 'Calculating...' : `$${totalUSD.toFixed(2)}`}
+                    </span>
+                  </div>
+                  
+                  {appliedCoupon && (
+                    <div className="flex justify-between items-center text-sm font-roboto-mono">
+                      <span className="text-green-600">Discount ({appliedCoupon.code})</span>
+                      <span className="text-green-600 font-minecraft">
+                        -${discountAmount.toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                  
+                  <div className="flex justify-between items-center font-semibold border-t border-border/30 pt-2">
+                    <span className="text-foreground text-lg font-roboto-mono">Final Total (USD)</span>
+                    <span className="text-primary text-lg font-minecraft">
+                      {totalUSD === null ? 'Calculating...' : `$${finalTotal.toFixed(2)}`}
+                    </span>
+                  </div>
+                  
+                  {cart.some(item => item.currency === 'SOL') && solPriceUSD && (
                     <div className="text-xs text-foreground/60 text-right font-roboto-mono">
                         (Using SOL @ ${solPriceUSD.toFixed(2)} USD)
                     </div>
-                )}
+                  )}
+                </div>
               </div>
             ) : (
               <p className="text-foreground/70 text-center py-4 font-roboto-mono">Your cart is empty.</p>
