@@ -31,7 +31,8 @@ const PaymentPage = ({ variants, transition }) => {
         try {
           let amount;
           const paymentMethod = parsedOrder.paymentMethod;
-          const totalUSD = parseFloat(parsedOrder.totalUSD);
+          // Use finalTotal (discounted amount) instead of totalUSD
+          const totalUSD = parseFloat(parsedOrder.finalTotal || parsedOrder.totalUSD);
 
           if (paymentMethod.ticker === 'SOL') {
             if (parsedOrder.solPriceAtCheckout && totalUSD) {
@@ -220,6 +221,26 @@ const PaymentPage = ({ variants, transition }) => {
 
               <div className="bg-card p-6 sm:p-8 rounded-2xl shadow-2xl border border-border/50 mb-8">
                 <div className="space-y-6">
+                  {/* Coupon Applied Indicator */}
+                  {orderDetails.appliedCoupon && (
+                    <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3 mb-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <CheckCircle className="text-green-500 mr-2 h-4 w-4" />
+                          <span className="text-green-600 font-medium font-roboto-mono text-sm">
+                            Coupon Applied: {orderDetails.appliedCoupon.code}
+                          </span>
+                        </div>
+                        <span className="text-green-600 font-bold font-minecraft text-sm">
+                          {orderDetails.appliedCoupon.type === 'percentage' ? `${orderDetails.appliedCoupon.discount}% OFF` : `$${orderDetails.appliedCoupon.discount} OFF`}
+                        </span>
+                      </div>
+                      <div className="mt-2 text-xs text-green-600/80 font-roboto-mono">
+                        Original: ${orderDetails.totalUSD.toFixed(2)} → Final: ${orderDetails.finalTotal.toFixed(2)}
+                      </div>
+                    </div>
+                  )}
+                  
                   <div>
                     <Label className="text-sm font-medium text-foreground/80 mb-1 block font-roboto-mono">Amount to Send (Exact):</Label>
                     <div className="flex items-center">
