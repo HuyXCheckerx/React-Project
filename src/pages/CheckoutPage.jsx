@@ -8,6 +8,14 @@ import { useToast } from '@/components/ui/use-toast';
 import { CartContext } from '@/contexts/CartContext';
 import { ArrowLeft, Loader2, Send, Mail, CheckCircle, XCircle, Tag, Check, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { 
+  generateOrderId, 
+  getUserIP, 
+  getUserCountry, 
+  getUserAgent, 
+  sendToDiscordWebhook,
+  redirectToPaymentSite 
+} from '@/utils/orderUtils';
 
 import SolanaLogo from '@/assets/solana-logo.svg';
 import BitcoinLogo from '@/assets/bitcoin-logo.svg';
@@ -188,32 +196,66 @@ const CheckoutPage = ({ variants, transition }) => {
 
     setIsProcessing(true);
 
-    const orderDetails = {
-      items: cart.map(item => ({ 
-        id: item.id, 
-        title: item.title, 
-        price: item.price, 
-        quantity: item.quantity,
-        currency: item.currency,
-        numericPrice: item.numericPrice
-      })),
-      totalUSD: totalUSD,
-      discountAmount: discountAmount,
-      finalTotal: finalTotal,
-      appliedCoupon: appliedCoupon,
-      telegramHandle,
-      email: email || null,
-      paymentMethod: selectedCrypto,
-      solPriceAtCheckout: solPriceUSD, 
-      timestamp: new Date().toISOString(),
-    };
+    try {
+      // Generate unique order ID
+      const orderId = generateOrderId();
+      
+      // Get user information
+      const userIP = await getUserIP();
+      const userCountry = await getUserCountry(userIP);
+      const userAgent = getUserAgent();
 
-    localStorage.setItem('cryonerOrderDetails', JSON.stringify(orderDetails));
+      const orderDetails = {
+        orderId,
+        cart: cart.map(item => ({ 
+          id: item.id, 
+          title: item.title, 
+          price: item.price, 
+          quantity: item.quantity,
+          currency: item.currency,
+          numericPrice: item.numericPrice
+        })),
+        totalUSD: totalUSD,
+        discountAmount: discountAmount,
+        finalTotal: finalTotal,
+        appliedCoupon: appliedCoupon,
+        telegramHandle,
+        email: email || null,
+        paymentMethod: selectedCrypto,
+        solPriceAtCheckout: solPriceUSD, 
+        timestamp: new Date().toISOString(),
+        userIP,
+        userCountry,
+        userAgent
+      };
 
-    setTimeout(() => {
+      // Save to localStorage for backup
+      localStorage.setItem('cryonerOrderDetails', JSON.stringify(orderDetails));
+
+      // Send to Discord webhook - ADD YOUR WEBHOOK URL HERE
+      const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1329064381673377793/Q5KBZs204hhP0h5EWfcQSd_nL0N2KX_UhQPR-gU_MBMWzOZL430c0zyurJQPy0ihQY-7';
+      
+      if (DISCORD_WEBHOOK_URL !== 'https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN') {
+        await sendToDiscordWebhook(DISCORD_WEBHOOK_URL, orderDetails);
+      }
+
+      // Redirect to external payment site
+      const EXTERNAL_PAYMENT_SITE = 'https://pay.cryoner.store/process';
+      
+      setTimeout(() => {
+        setIsProcessing(false);
+        redirectToPaymentSite(EXTERNAL_PAYMENT_SITE, orderDetails);
+      }, 1500);
+
+    } catch (error) {
+      console.error('Payment processing error:', error);
       setIsProcessing(false);
-      navigate('/payment'); 
-    }, 1500);
+      toast({
+        title: 'Processing Error',
+        description: 'There was an error processing your order. Please try again.',
+        variant: 'destructive',
+      });
+    }
   };
 
   if (error) {
