@@ -1,11 +1,12 @@
 [build]
   base = "."
   publish = "dist"
-  command = "npm install --no-optional --no-audit --no-fund && npm run build"
+  command = "rm -rf node_modules package-lock.json && npm install --omit=optional --no-audit --no-fund && npm run build"
 
 [build.environment]
   # Ensure Node version aligns with local if needed; falls back to site setting
   NODE_VERSION = "20"
-  NPM_FLAGS = "--no-optional --no-audit --no-fund"
+  NPM_FLAGS = "--omit=optional --no-audit --no-fund --no-package-lock"
+  NPM_CONFIG_OPTIONAL = "false"
 
 
