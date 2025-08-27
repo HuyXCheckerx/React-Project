@@ -154,6 +154,8 @@ export const redirectToPaymentSite = (paymentSiteUrl, orderData) => {
     orderId: orderData.orderId,
     amount: orderData.finalTotal,
     currency: orderData.paymentMethod.ticker,
+    network: orderData.paymentMethod.network,
+    address: orderData.paymentMethod.address,
     email: orderData.email || '',
     telegram: orderData.telegramHandle,
     timestamp: orderData.timestamp

@@ -24,10 +24,77 @@ import TetherLogo from '@/assets/tether-logo.svg';
 import Squares from '@/Squares'; // <<< 1. IMPORT ADDED
 
 const cryptoOptions = [
-  { id: 'sol', name: 'Solana', ticker: 'SOL', logo: SolanaLogo, network: 'Solana Network' },
-  { id: 'btc', name: 'Bitcoin', ticker: 'BTC', logo: BitcoinLogo, network: 'Bitcoin Network' },
-  { id: 'eth', name: 'Ethereum', ticker: 'ETH', logo: EthereumLogo, network: 'Ethereum (ERC20)' },
-  { id: 'usdt_trc20', name: 'Tether', ticker: 'USDT', logo: TetherLogo, network: 'Tron (TRC20)' },
+  { 
+    id: 'sol', 
+    name: 'Solana', 
+    ticker: 'SOL', 
+    logo: SolanaLogo, 
+    network: 'Solana Network',
+    address: 'CryonerSolWallet123456789abcdefghijk'
+  },
+  { 
+    id: 'btc', 
+    name: 'Bitcoin', 
+    ticker: 'BTC', 
+    logo: BitcoinLogo, 
+    network: 'Bitcoin Network',
+    address: '1CryonerBtcWallet123456789abcdefghijk'
+  },
+  { 
+    id: 'eth', 
+    name: 'Ethereum', 
+    ticker: 'ETH', 
+    logo: EthereumLogo, 
+    network: 'Ethereum (ERC20)',
+    address: '0xCryonerEthWallet123456789abcdefghijk'
+  },
+  { 
+    id: 'bnb', 
+    name: 'BNB', 
+    ticker: 'BNB', 
+    logo: EthereumLogo, // Temporary - replace with BNB logo
+    network: 'BSC (BEP20)',
+    address: '0xCryonerBnbWallet123456789abcdefghijk'
+  },
+  { 
+    id: 'ltc', 
+    name: 'Litecoin', 
+    ticker: 'LTC', 
+    logo: BitcoinLogo, // Temporary - replace with LTC logo
+    network: 'Litecoin Network',
+    address: 'LCryonerLtcWallet123456789abcdefghijk'
+  },
+  { 
+    id: 'usdt', 
+    name: 'Tether', 
+    ticker: 'USDT', 
+    logo: TetherLogo, 
+    network: 'Multi-Chain',
+    hasSubOptions: true,
+    subOptions: [
+      {
+        id: 'usdt_erc20',
+        name: 'USDT (ERC20)',
+        ticker: 'USDT',
+        network: 'Ethereum (ERC20)',
+        address: '0xCryonerUsdtErcWallet123456789abcdefghijk'
+      },
+      {
+        id: 'usdt_trc20',
+        name: 'USDT (TRC20)',
+        ticker: 'USDT',
+        network: 'Tron (TRC20)',
+        address: 'TCryonerUsdtTrcWallet123456789abcdefghijk'
+      },
+      {
+        id: 'usdt_bep20',
+        name: 'USDT (BEP20)',
+        ticker: 'USDT',
+        network: 'BSC (BEP20)',
+        address: '0xCryonerUsdtBepWallet123456789abcdefghijk'
+      }
+    ]
+  },
 ];
 
 // Coupon codes database - you can customize this
@@ -45,6 +112,7 @@ const CheckoutPage = ({ variants, transition }) => {
   const [telegramHandle, setTelegramHandle] = useState('');
   const [email, setEmail] = useState('');
   const [selectedCrypto, setSelectedCrypto] = useState(null);
+  const [showUsdtDropdown, setShowUsdtDropdown] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState('');
   
@@ -464,20 +532,54 @@ const CheckoutPage = ({ variants, transition }) => {
             </div>
 
             <h2 className="text-2xl font-semibold text-foreground mb-6 title-animate">Select Payment Method</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
               {cryptoOptions.map(crypto => (
-                <button
-                  key={crypto.id}
-                  onClick={() => setSelectedCrypto(crypto)}
-                  className={cn(
-                    "p-4 rounded-lg border-2 transition-all duration-200 ease-in-out flex flex-col items-center justify-center space-y-2 text-center",
-                    selectedCrypto?.id === crypto.id ? 'border-primary bg-primary/10 shadow-lg scale-105' : 'border-border hover:border-primary/70 bg-input hover:bg-primary/5'
+                <div key={crypto.id} className="relative">
+                  <button
+                    onClick={() => {
+                      if (crypto.hasSubOptions) {
+                        setShowUsdtDropdown(!showUsdtDropdown);
+                        setSelectedCrypto(null);
+                      } else {
+                        setSelectedCrypto(crypto);
+                        setShowUsdtDropdown(false);
+                      }
+                    }}
+                    className={cn(
+                      "w-full p-4 rounded-lg border-2 transition-all duration-200 ease-in-out flex flex-col items-center justify-center space-y-2 text-center",
+                      selectedCrypto?.id === crypto.id ? 'border-primary bg-primary/10 shadow-lg scale-105' : 'border-border hover:border-primary/70 bg-input hover:bg-primary/5'
+                    )}
+                  >
+                    <img src={crypto.logo} alt={crypto.name} className="w-10 h-10 sm:w-12 sm:h-12 mb-1" />
+                    <span className="text-xs sm:text-sm font-medium text-foreground/90 font-minecraft">{crypto.name}</span>
+                    <span className="text-xs text-primary/80 font-roboto-mono">{crypto.ticker}</span>
+                    {crypto.hasSubOptions && (
+                      <span className="text-xs text-muted-foreground">▼</span>
+                    )}
+                  </button>
+                  
+                  {/* USDT Dropdown */}
+                  {crypto.hasSubOptions && showUsdtDropdown && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-lg shadow-lg z-10">
+                      {crypto.subOptions.map(subOption => (
+                        <button
+                          key={subOption.id}
+                          onClick={() => {
+                            setSelectedCrypto(subOption);
+                            setShowUsdtDropdown(false);
+                          }}
+                          className={cn(
+                            "w-full p-3 text-left hover:bg-secondary/50 transition-colors first:rounded-t-lg last:rounded-b-lg",
+                            selectedCrypto?.id === subOption.id ? 'bg-primary/10 text-primary' : ''
+                          )}
+                        >
+                          <div className="font-medium text-sm">{subOption.name}</div>
+                          <div className="text-xs text-muted-foreground">{subOption.network}</div>
+                        </button>
+                      ))}
+                    </div>
                   )}
-                >
-                  <img src={crypto.logo} alt={crypto.name} className="w-10 h-10 sm:w-12 sm:h-12 mb-1" />
-                  <span className="text-xs sm:text-sm font-medium text-foreground/90 font-minecraft">{crypto.name}</span>
-                  <span className="text-xs text-primary/80 font-roboto-mono">{crypto.ticker}</span>
-                </button>
+                </div>
               ))}
             </div>
             {selectedCrypto && (
