@@ -532,100 +532,226 @@ const CheckoutPage = ({ variants, transition }) => {
             </div>
 
             <h2 className="text-2xl font-semibold text-foreground mb-6 title-animate">Select Payment Method</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
-              {cryptoOptions.map(crypto => (
-                <div key={crypto.id} className="relative group">
+            <div className="relative mb-8">
+              {/* Top Row - Large BTC and Medium ETH */}
+              <div className="flex gap-4 mb-4">
+                {/* Large BTC Card */}
+                <div className="relative group flex-1">
                   <button
                     onClick={() => {
-                      if (crypto.hasSubOptions) {
-                        setShowUsdtDropdown(!showUsdtDropdown);
-                        setSelectedCrypto(null);
-                      } else {
-                        setSelectedCrypto(crypto);
-                        setShowUsdtDropdown(false);
-                      }
+                      setSelectedCrypto(cryptoOptions.find(c => c.id === 'btc'));
+                      setShowUsdtDropdown(false);
                     }}
                     className={cn(
-                      "w-full p-4 rounded-xl border-2 transition-all duration-300 ease-out flex flex-col items-center justify-center space-y-3 text-center relative overflow-hidden",
+                      "w-full h-32 p-6 rounded-2xl border-2 transition-all duration-300 ease-out flex flex-col items-center justify-center space-y-4 text-center relative overflow-hidden",
                       "bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm",
                       "hover:shadow-2xl hover:shadow-primary/20 hover:scale-105 hover:-translate-y-1",
                       "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/0 before:via-primary/10 before:to-primary/0 before:opacity-0 before:transition-opacity before:duration-300 before:ease-out hover:before:opacity-100",
                       "after:absolute after:inset-0 after:bg-gradient-to-br after:from-transparent after:via-white/5 after:to-transparent after:opacity-0 after:transition-opacity after:duration-300 after:ease-out hover:after:opacity-100",
-                      selectedCrypto?.id === crypto.id 
+                      selectedCrypto?.id === 'btc'
                         ? 'border-primary bg-primary/10 shadow-xl shadow-primary/30 scale-105 -translate-y-1 before:opacity-100 after:opacity-100' 
                         : 'border-border/50 hover:border-primary/80 bg-input/50 hover:bg-primary/5'
                     )}
                   >
-                    {/* Glowing background effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out rounded-xl" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out rounded-2xl" />
                     
-                    {/* Logo with enhanced styling */}
                     <div className="relative z-10">
                       <div className="relative">
                         <img 
-                          src={crypto.logo} 
-                          alt={crypto.name} 
-                          className="w-12 h-12 sm:w-14 sm:h-14 mb-2 transition-all duration-300 ease-out group-hover:scale-110 group-hover:drop-shadow-lg" 
+                          src={BitcoinLogo} 
+                          alt="Bitcoin" 
+                          className="w-16 h-16 mb-3 transition-all duration-300 ease-out group-hover:scale-110 group-hover:drop-shadow-lg" 
                         />
-                        {/* Subtle glow effect around logo */}
                         <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out scale-125" />
                       </div>
                     </div>
                     
-                    {/* Text content with better spacing and typography */}
                     <div className="relative z-10 space-y-1">
-                      <span className="text-sm sm:text-base font-bold text-foreground/90 font-minecraft tracking-wide group-hover:text-primary transition-colors duration-300">
-                        {crypto.name}
+                      <span className="text-xl font-bold text-foreground/90 font-minecraft tracking-wide group-hover:text-primary transition-colors duration-300">
+                        Bitcoin
                       </span>
-                      <span className="text-xs text-primary/70 font-roboto-mono font-medium tracking-wider group-hover:text-primary/90 transition-colors duration-300">
-                        {crypto.ticker}
+                      <span className="text-sm text-primary/70 font-roboto-mono font-medium tracking-wider group-hover:text-primary/90 transition-colors duration-300">
+                        BTC
                       </span>
-                      {crypto.hasSubOptions && (
-                        <span className="text-xs text-muted-foreground/60 group-hover:text-primary/60 transition-colors duration-300">▼</span>
-                      )}
                     </div>
                     
-                    {/* Animated border effect */}
+                    <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
+                  </button>
+                </div>
+
+                {/* Medium ETH Card */}
+                <div className="relative group w-48">
+                  <button
+                    onClick={() => {
+                      setSelectedCrypto(cryptoOptions.find(c => c.id === 'eth'));
+                      setShowUsdtDropdown(false);
+                    }}
+                    className={cn(
+                      "w-full h-32 p-4 rounded-xl border-2 transition-all duration-300 ease-out flex flex-col items-center justify-center space-y-3 text-center relative overflow-hidden",
+                      "bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm",
+                      "hover:shadow-2xl hover:shadow-primary/20 hover:scale-105 hover:-translate-y-1",
+                      "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/0 before:via-primary/10 before:to-primary/0 before:opacity-0 before:transition-opacity before:duration-300 before:ease-out hover:before:opacity-100",
+                      "after:absolute after:inset-0 after:bg-gradient-to-br after:from-transparent after:via-white/5 after:to-transparent after:opacity-0 after:transition-opacity after:duration-300 after:ease-out hover:after:opacity-100",
+                      selectedCrypto?.id === 'eth'
+                        ? 'border-primary bg-primary/10 shadow-xl shadow-primary/30 scale-105 -translate-y-1 before:opacity-100 after:opacity-100' 
+                        : 'border-border/50 hover:border-primary/80 bg-input/50 hover:bg-primary/5'
+                    )}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out rounded-xl" />
+                    
+                    <div className="relative z-10">
+                      <div className="relative">
+                        <img 
+                          src={EthereumLogo} 
+                          alt="Ethereum" 
+                          className="w-14 h-14 mb-2 transition-all duration-300 ease-out group-hover:scale-110 group-hover:drop-shadow-lg" 
+                        />
+                        <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out scale-125" />
+                      </div>
+                    </div>
+                    
+                    <div className="relative z-10 space-y-1">
+                      <span className="text-lg font-bold text-foreground/90 font-minecraft tracking-wide group-hover:text-primary transition-colors duration-300">
+                        Ethereum
+                      </span>
+                      <span className="text-xs text-primary/70 font-roboto-mono font-medium tracking-wider group-hover:text-primary/90 transition-colors duration-300">
+                        ETH
+                      </span>
+                    </div>
+                    
                     <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
                   </button>
-                  
-                  {/* USDT Dropdown */}
-                  {crypto.hasSubOptions && showUsdtDropdown && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-card/95 backdrop-blur-md border border-primary/20 rounded-xl shadow-2xl shadow-primary/20 z-20 overflow-hidden">
-                      <div className="bg-gradient-to-br from-primary/5 via-transparent to-accent/5 absolute inset-0" />
-                      {crypto.subOptions.map((subOption, index) => (
-                        <button
-                          key={subOption.id}
-                          onClick={() => {
-                            setSelectedCrypto(subOption);
-                            setShowUsdtDropdown(false);
-                          }}
-                          className={cn(
-                            "w-full p-4 text-left transition-all duration-200 ease-out relative group",
-                            "hover:bg-primary/10 hover:scale-[1.02]",
-                            "first:rounded-t-xl last:rounded-b-xl",
-                            selectedCrypto?.id === subOption.id 
-                              ? 'bg-primary/15 text-primary shadow-inner' 
-                              : 'hover:text-primary/90'
-                          )}
-                        >
-                          {/* Subtle hover effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out" />
-                          
-                          <div className="relative z-10">
-                            <div className="font-bold text-sm font-minecraft tracking-wide group-hover:text-primary transition-colors duration-200">
-                              {subOption.name}
-                            </div>
-                            <div className="text-xs text-muted-foreground/80 font-roboto-mono group-hover:text-primary/70 transition-colors duration-200">
-                              {subOption.network}
-                            </div>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  )}
                 </div>
-              ))}
+              </div>
+
+              {/* Middle Row - Small Cards */}
+              <div className="flex gap-4 mb-4">
+                {cryptoOptions.filter(crypto => ['ltc', 'bnb', 'sol'].includes(crypto.id)).map(crypto => (
+                  <div key={crypto.id} className="relative group flex-1">
+                    <button
+                      onClick={() => {
+                        setSelectedCrypto(crypto);
+                        setShowUsdtDropdown(false);
+                      }}
+                      className={cn(
+                        "w-full h-24 p-3 rounded-lg border-2 transition-all duration-300 ease-out flex flex-col items-center justify-center space-y-2 text-center relative overflow-hidden",
+                        "bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm",
+                        "hover:shadow-2xl hover:shadow-primary/20 hover:scale-105 hover:-translate-y-1",
+                        "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/0 before:via-primary/10 before:to-primary/0 before:opacity-0 before:transition-opacity before:duration-300 before:ease-out hover:before:opacity-100",
+                        "after:absolute after:inset-0 after:bg-gradient-to-br after:from-transparent after:via-white/5 after:to-transparent after:opacity-0 after:transition-opacity after:duration-300 after:ease-out hover:after:opacity-100",
+                        selectedCrypto?.id === crypto.id
+                          ? 'border-primary bg-primary/10 shadow-xl shadow-primary/30 scale-105 -translate-y-1 before:opacity-100 after:opacity-100' 
+                          : 'border-border/50 hover:border-primary/80 bg-input/50 hover:bg-primary/5'
+                      )}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out rounded-lg" />
+                      
+                      <div className="relative z-10">
+                        <div className="relative">
+                          <img 
+                            src={crypto.logo} 
+                            alt={crypto.name} 
+                            className="w-10 h-10 mb-1 transition-all duration-300 ease-out group-hover:scale-110 group-hover:drop-shadow-lg" 
+                          />
+                          <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out scale-125" />
+                        </div>
+                      </div>
+                      
+                      <div className="relative z-10 space-y-0.5">
+                        <span className="text-sm font-bold text-foreground/90 font-minecraft tracking-wide group-hover:text-primary transition-colors duration-300">
+                          {crypto.name}
+                        </span>
+                        <span className="text-xs text-primary/70 font-roboto-mono font-medium tracking-wider group-hover:text-primary/90 transition-colors duration-300">
+                          {crypto.ticker}
+                        </span>
+                      </div>
+                      
+                      <div className="absolute inset-0 rounded-lg border-2 border-transparent bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* Bottom Row - Large USDT Card */}
+              <div className="relative group">
+                <button
+                  onClick={() => {
+                    setShowUsdtDropdown(!showUsdtDropdown);
+                    setSelectedCrypto(null);
+                  }}
+                  className={cn(
+                    "w-full h-28 p-6 rounded-2xl border-2 transition-all duration-300 ease-out flex flex-col items-center justify-center space-y-3 text-center relative overflow-hidden",
+                    "bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm",
+                    "hover:shadow-2xl hover:shadow-primary/20 hover:scale-105 hover:-translate-y-1",
+                    "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/0 before:via-primary/10 before:to-primary/0 before:opacity-0 before:transition-opacity before:duration-300 before:ease-out hover:before:opacity-100",
+                    "after:absolute after:inset-0 after:bg-gradient-to-br after:from-transparent after:via-white/5 after:to-transparent after:opacity-0 after:transition-opacity after:duration-300 after:ease-out hover:after:opacity-100",
+                    selectedCrypto?.id?.startsWith('usdt')
+                      ? 'border-primary bg-primary/10 shadow-xl shadow-primary/30 scale-105 -translate-y-1 before:opacity-100 after:opacity-100' 
+                      : 'border-border/50 hover:border-primary/80 bg-input/50 hover:bg-primary/5'
+                  )}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out rounded-2xl" />
+                  
+                  <div className="relative z-10">
+                    <div className="relative">
+                      <img 
+                        src={TetherLogo} 
+                        alt="Tether" 
+                        className="w-16 h-16 mb-2 transition-all duration-300 ease-out group-hover:scale-110 group-hover:drop-shadow-lg" 
+                      />
+                      <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out scale-125" />
+                    </div>
+                  </div>
+                  
+                  <div className="relative z-10 space-y-1">
+                    <span className="text-xl font-bold text-foreground/90 font-minecraft tracking-wide group-hover:text-primary transition-colors duration-300">
+                      Tether
+                    </span>
+                    <span className="text-sm text-primary/70 font-roboto-mono font-medium tracking-wider group-hover:text-primary/90 transition-colors duration-300">
+                      USDT
+                    </span>
+                    <span className="text-xs text-muted-foreground/60 group-hover:text-primary/60 transition-colors duration-300">▼ Multiple Networks</span>
+                  </div>
+                  
+                                    <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
+                </button>
+                
+                {/* USDT Dropdown */}
+                {showUsdtDropdown && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-card/95 backdrop-blur-md border border-primary/20 rounded-xl shadow-2xl shadow-primary/20 z-20 overflow-hidden">
+                    <div className="bg-gradient-to-br from-primary/5 via-transparent to-accent/5 absolute inset-0" />
+                    {cryptoOptions.find(c => c.id === 'usdt')?.subOptions?.map((subOption, index) => (
+                      <button
+                        key={subOption.id}
+                        onClick={() => {
+                          setSelectedCrypto(subOption);
+                          setShowUsdtDropdown(false);
+                        }}
+                        className={cn(
+                          "w-full p-4 text-left transition-all duration-200 ease-out relative group",
+                          "hover:bg-primary/10 hover:scale-[1.02]",
+                          "first:rounded-t-xl last:rounded-b-xl",
+                          selectedCrypto?.id === subOption.id 
+                            ? 'bg-primary/15 text-primary shadow-inner' 
+                            : 'hover:text-primary/90'
+                        )}
+                      >
+                        {/* Subtle hover effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out" />
+                        
+                        <div className="relative z-10">
+                          <div className="font-bold text-sm font-minecraft tracking-wide group-hover:text-primary transition-colors duration-200">
+                            {subOption.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground/80 font-roboto-mono group-hover:text-primary/70 transition-colors duration-200">
+                            {subOption.network}
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
             {selectedCrypto && (
                 <div className="text-center p-4 bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 rounded-xl mb-6 border border-primary/20 shadow-lg relative overflow-hidden">
