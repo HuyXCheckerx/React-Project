@@ -1,0 +1,11 @@
+[build]
+  base = "."
+  publish = "dist"
+  command = "npm install --no-optional --no-audit --no-fund && npm run build"
+
+[build.environment]
+  # Ensure Node version aligns with local if needed; falls back to site setting
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--no-optional --no-audit --no-fund"
+
+
