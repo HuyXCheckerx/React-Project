@@ -144,7 +144,7 @@ const getCryptoPricesFromBinance = async () => {
 /**
  * Calculate crypto amount from USD using real-time Binance prices
  */
-const calculateCryptoAmount = async (usdAmount, cryptoTicker) => {
+export const calculateCryptoAmount = async (usdAmount, cryptoTicker) => {
   const prices = await getCryptoPricesFromBinance();
   const price = prices[cryptoTicker] || 1;
   return usdAmount / price;
