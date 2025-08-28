@@ -65,6 +65,14 @@ const cryptoOptions = [
     address: 'LCryonerLtcWallet123456789abcdefghijk'
   },
   { 
+    id: 'tron', 
+    name: 'TRON', 
+    ticker: 'TRX', 
+    logo: EthereumLogo, // Temporary - replace with TRON logo
+    network: 'Tron Network',
+    address: 'TCryonerTronWallet123456789abcdefghijk'
+  },
+  { 
     id: 'usdt', 
     name: 'Tether', 
     ticker: 'USDT', 
@@ -626,7 +634,7 @@ const CheckoutPage = ({ variants, transition }) => {
 
               {/* Middle Row - Small Cards */}
               <div className="flex gap-4 mb-4">
-                {cryptoOptions.filter(crypto => ['ltc', 'bnb', 'sol'].includes(crypto.id)).map(crypto => (
+                {cryptoOptions.filter(crypto => ['ltc', 'bnb', 'sol', 'tron'].includes(crypto.id)).map(crypto => (
                   <div key={crypto.id} className="relative group flex-1">
                     <button
                       onClick={() => {
