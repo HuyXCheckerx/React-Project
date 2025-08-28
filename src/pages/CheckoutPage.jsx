@@ -569,22 +569,16 @@ const CheckoutPage = ({ variants, transition }) => {
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out rounded-2xl" />
                     
                     <div className="relative z-10">
-                      <div className="relative">
-                        <img 
-                          src={BitcoinLogo} 
-                          alt="Bitcoin" 
-                          className="w-16 h-16 mb-3 transition-all duration-300 ease-out group-hover:scale-110 group-hover:drop-shadow-lg" 
-                        />
-                        <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out scale-125" />
+                      <div className="relative flex items-center justify-center mb-3">
+                        <SiBitcoin size={64} className="text-[#F7931A] transition-transform duration-300 ease-out group-hover:scale-110 drop-shadow-[0_0_10px_rgba(247,147,26,0.35)]" />
+                        <div className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" style={{boxShadow:'0 0 40px rgba(247,147,26,0.25)'}} />
                       </div>
                     </div>
                     
                     <div className="relative z-10 space-y-1">
-                      <span className="text-xl font-bold text-foreground/90 font-minecraft tracking-wide group-hover:text-primary transition-colors duration-300">
+                      <span className="text-2xl md:text-3xl font-bold text-foreground/90 font-minecraft tracking-wider group-hover:text-primary transition-colors duration-300">
                         Bitcoin
-                      </span>
-                      <span className="text-sm text-primary/70 font-roboto-mono font-medium tracking-wider group-hover:text-primary/90 transition-colors duration-300">
-                        BTC
+                        <sup className="ml-2 align-super text-[10px] md:text-xs text-primary/80 font-roboto-mono">BTC</sup>
                       </span>
                     </div>
                     
@@ -610,25 +604,19 @@ const CheckoutPage = ({ variants, transition }) => {
                         : 'border-border/50 hover:border-primary/80 bg-input/50 hover:bg-primary/5'
                     )}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out rounded-xl" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out rounded-xl" />
                     
                     <div className="relative z-10">
-                      <div className="relative">
-                        <img 
-                          src={EthereumLogo} 
-                          alt="Ethereum" 
-                          className="w-14 h-14 mb-2 transition-all duration-300 ease-out group-hover:scale-110 group-hover:drop-shadow-lg" 
-                        />
-                        <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out scale-125" />
+                      <div className="relative flex items-center justify-center mb-2">
+                        <SiEthereum size={52} className="text-[#8A92B2] transition-transform duration-300 ease-out group-hover:scale-110 drop-shadow-[0_0_10px_rgba(138,146,178,0.35)]" />
+                        <div className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" style={{boxShadow:'0 0 36px rgba(138,146,178,0.25)'}} />
                       </div>
                     </div>
                     
                     <div className="relative z-10 space-y-1">
-                      <span className="text-lg font-bold text-foreground/90 font-minecraft tracking-wide group-hover:text-primary transition-colors duration-300">
+                      <span className="text-xl font-bold text-foreground/90 font-minecraft tracking-wider group-hover:text-primary transition-colors duration-300">
                         Ethereum
-                      </span>
-                      <span className="text-xs text-primary/70 font-roboto-mono font-medium tracking-wider group-hover:text-primary/90 transition-colors duration-300">
-                        ETH
+                        <sup className="ml-1 align-super text-[10px] text-primary/80 font-roboto-mono">ETH</sup>
                       </span>
                     </div>
                     
@@ -660,22 +648,16 @@ const CheckoutPage = ({ variants, transition }) => {
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out rounded-lg" />
                       
                       <div className="relative z-10">
-                        <div className="relative">
-                          <img 
-                            src={crypto.logo} 
-                            alt={crypto.name} 
-                            className="w-10 h-10 mb-1 transition-all duration-300 ease-out group-hover:scale-110 group-hover:drop-shadow-lg" 
-                          />
-                          <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out scale-125" />
+                        <div className="relative flex items-center justify-center">
+                          {React.createElement(crypto.icon, { size: 36, className: "transition-transform duration-300 ease-out group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.25)]" })}
+                          <div className="absolute inset-0 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" style={{boxShadow:'0 0 24px rgba(255,255,255,0.15)'}} />
                         </div>
                       </div>
                       
                       <div className="relative z-10 space-y-0.5">
-                        <span className="text-sm font-bold text-foreground/90 font-minecraft tracking-wide group-hover:text-primary transition-colors duration-300">
+                        <span className="text-base font-bold text-foreground/90 font-minecraft tracking-wider group-hover:text-primary transition-colors duration-300">
                           {crypto.name}
-                        </span>
-                        <span className="text-xs text-primary/70 font-roboto-mono font-medium tracking-wider group-hover:text-primary/90 transition-colors duration-300">
-                          {crypto.ticker}
+                          <sup className="ml-1 align-super text-[9px] text-primary/80 font-roboto-mono">{crypto.ticker}</sup>
                         </span>
                       </div>
                       
@@ -706,24 +688,18 @@ const CheckoutPage = ({ variants, transition }) => {
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out rounded-2xl" />
                   
                   <div className="relative z-10">
-                    <div className="relative">
-                      <img 
-                        src={TetherLogo} 
-                        alt="Tether" 
-                        className="w-16 h-16 mb-2 transition-all duration-300 ease-out group-hover:scale-110 group-hover:drop-shadow-lg" 
-                      />
-                      <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out scale-125" />
+                    <div className="relative flex items-center justify-center mb-2">
+                      <SiTether size={56} className="text-[#26A17B] transition-transform duration-300 ease-out group-hover:scale-110 drop-shadow-[0_0_12px_rgba(38,161,123,0.35)]" />
+                      <div className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" style={{boxShadow:'0 0 40px rgba(38,161,123,0.25)'}} />
                     </div>
                   </div>
                   
                   <div className="relative z-10 space-y-1">
-                    <span className="text-xl font-bold text-foreground/90 font-minecraft tracking-wide group-hover:text-primary transition-colors duration-300">
+                    <span className="text-2xl font-bold text-foreground/90 font-minecraft tracking-wider group-hover:text-primary transition-colors duration-300">
                       Tether
+                      <sup className="ml-2 align-super text-[10px] text-primary/80 font-roboto-mono">USDT</sup>
                     </span>
-                    <span className="text-sm text-primary/70 font-roboto-mono font-medium tracking-wider group-hover:text-primary/90 transition-colors duration-300">
-                      USDT
-                    </span>
-                    <span className="text-xs text-muted-foreground/60 group-hover:text-primary/60 transition-colors duration-300">▼ Multiple Networks</span>
+                    <span className="text-[11px] text-muted-foreground/70 group-hover:text-primary/60 transition-colors duration-300">▼ Multiple Networks</span>
                   </div>
                   
                                     <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
