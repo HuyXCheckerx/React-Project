@@ -23,20 +23,28 @@ const PaymentStatusPage = ({ variants, transition }) => {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const openPaymentTab = () => {
-    const params = new URLSearchParams({
-      orderId: orderDetails.orderId,
-      amount: orderDetails.finalTotal,
-      currency: orderDetails.paymentMethod.ticker,
-      network: orderDetails.paymentMethod.network,
-      address: orderDetails.paymentMethod.address,
-      email: orderDetails.email || '',
-      telegram: orderDetails.telegramHandle,
-      timestamp: orderDetails.timestamp
-    });
+  const openPaymentTab = async () => {
+    try {
+      // Import and use the same redirect function as checkout
+      const { redirectToPaymentSite } = await import('@/utils/orderUtils');
+      await redirectToPaymentSite('https://pay.cryoner.store/process', orderDetails);
+    } catch (error) {
+      console.error('Error opening payment tab:', error);
+      // Fallback to basic URL
+      const params = new URLSearchParams({
+        orderId: orderDetails.orderId,
+        amount: orderDetails.finalTotal,
+        currency: orderDetails.paymentMethod.ticker,
+        network: orderDetails.paymentMethod.network,
+        address: orderDetails.paymentMethod.address,
+        email: orderDetails.email || '',
+        telegram: orderDetails.telegramHandle,
+        timestamp: orderDetails.timestamp
+      });
 
-    const redirectUrl = `https://pay.cryoner.store/process?${params.toString()}`;
-    window.open(redirectUrl, '_blank');
+      const redirectUrl = `https://pay.cryoner.store/process?${params.toString()}`;
+      window.open(redirectUrl, '_blank');
+    }
   };
 
   if (!orderDetails) {

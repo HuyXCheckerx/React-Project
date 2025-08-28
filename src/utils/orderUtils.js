@@ -148,24 +148,47 @@ export const sendToDiscordWebhook = async (webhookUrl, orderData) => {
 /**
  * Open payment site in new tab with secure order data
  */
-export const redirectToPaymentSite = (paymentSiteUrl, orderData) => {
-  // Import security utils dynamically to avoid circular imports
-  import('./securityUtils.js').then(({ createSecurePaymentUrl }) => {
+export const redirectToPaymentSite = async (paymentSiteUrl, orderData) => {
+  try {
+    // Import security utils dynamically to avoid circular imports
+    const { createSecurePaymentUrl } = await import('./securityUtils.js');
+    
     try {
       const secureUrl = createSecurePaymentUrl(paymentSiteUrl, orderData);
+      console.log('Opening secure payment URL:', secureUrl);
       window.open(secureUrl, '_blank');
-    } catch (error) {
-      console.error('Failed to create secure payment URL:', error);
+    } catch (securityError) {
+      console.error('Failed to create secure payment URL:', securityError);
       // Fallback to basic URL if security fails
       const params = new URLSearchParams({
         orderId: orderData.orderId,
         amount: orderData.finalTotal,
         currency: orderData.paymentMethod.ticker,
+        network: orderData.paymentMethod.network,
+        address: orderData.paymentMethod.address,
+        email: orderData.email || '',
         telegram: orderData.telegramHandle,
         timestamp: orderData.timestamp
       });
       const fallbackUrl = `${paymentSiteUrl}?${params.toString()}`;
+      console.log('Opening fallback payment URL:', fallbackUrl);
       window.open(fallbackUrl, '_blank');
     }
-  });
+  } catch (importError) {
+    console.error('Failed to import security utils:', importError);
+    // Final fallback - basic URL without security
+    const params = new URLSearchParams({
+      orderId: orderData.orderId,
+      amount: orderData.finalTotal,
+      currency: orderData.paymentMethod.ticker,
+      network: orderData.paymentMethod.network,
+      address: orderData.paymentMethod.address,
+      email: orderData.email || '',
+      telegram: orderData.telegramHandle,
+      timestamp: orderData.timestamp
+    });
+    const basicUrl = `${paymentSiteUrl}?${params.toString()}`;
+    console.log('Opening basic payment URL:', basicUrl);
+    window.open(basicUrl, '_blank');
+  }
 };

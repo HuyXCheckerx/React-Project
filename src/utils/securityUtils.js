@@ -71,14 +71,23 @@ export const decryptOrderData = (encryptedData) => {
  * Create secure payment URL with encrypted data and token
  */
 export const createSecurePaymentUrl = (baseUrl, orderData) => {
+  console.log('Creating secure payment URL with order data:', orderData);
+  
   // Enhanced order data with payment details
   const enhancedOrderData = {
     ...orderData,
-    paymentAddress: orderData.paymentMethod.address,
-    cryptoAmount: calculateCryptoAmount(orderData.finalTotal, orderData.paymentMethod.ticker),
+    paymentAddress: orderData.paymentMethod?.address,
+    cryptoAmount: calculateCryptoAmount(orderData.finalTotal, orderData.paymentMethod?.ticker),
     usdAmount: orderData.finalTotal,
-    network: orderData.paymentMethod.network
+    network: orderData.paymentMethod?.network,
+    currency: orderData.paymentMethod?.ticker,
+    email: orderData.email || '',
+    telegram: orderData.telegramHandle || '',
+    orderId: orderData.orderId,
+    timestamp: orderData.timestamp
   };
+  
+  console.log('Enhanced order data:', enhancedOrderData);
   
   const token = createOrderToken(enhancedOrderData);
   const encryptedData = encryptOrderData(enhancedOrderData);
@@ -93,7 +102,10 @@ export const createSecurePaymentUrl = (baseUrl, orderData) => {
     timestamp: Date.now().toString()
   });
   
-  return `${baseUrl}?${params.toString()}`;
+  const finalUrl = `${baseUrl}?${params.toString()}`;
+  console.log('Final secure URL created:', finalUrl);
+  
+  return finalUrl;
 };
 
 /**

@@ -35,7 +35,7 @@ const cryptoOptions = [
     ticker: 'SOL', 
     icon: SiSolana, 
     network: 'Solana Network',
-    address: 'CryonerSolWallet123456789abcdefghijk'
+    address: '6FNXjzqQidLFTUnZ3pQ68jDSsgz4UNj9BoemverpTNiC'
   },
   { 
     id: 'btc', 
@@ -43,7 +43,7 @@ const cryptoOptions = [
     ticker: 'BTC', 
     icon: SiBitcoin, 
     network: 'Bitcoin Network',
-    address: '1CryonerBtcWallet123456789abcdefghijk'
+    address: '3AFg7Mvkjeh33U82dgt8MLh9SZKw3KZLQU'
   },
   { 
     id: 'eth', 
@@ -51,7 +51,7 @@ const cryptoOptions = [
     ticker: 'ETH', 
     icon: SiEthereum, 
     network: 'Ethereum (ERC20)',
-    address: '0xCryonerEthWallet123456789abcdefghijk'
+    address: '0xcd9d62a1baeed132c930346fc760c525fab4201f'
   },
   { 
     id: 'bnb', 
@@ -59,7 +59,7 @@ const cryptoOptions = [
     ticker: 'BNB', 
     icon: SiBinance,
     network: 'BSC (BEP20)',
-    address: '0xCryonerBnbWallet123456789abcdefghijk'
+    address: '0xcd9d62a1baeed132c930346fc760c525fab4201f'
   },
   { 
     id: 'ltc', 
@@ -67,7 +67,7 @@ const cryptoOptions = [
     ticker: 'LTC', 
     icon: SiBitcoin, // Placeholder closest look; provide LTC SVG later
     network: 'Litecoin Network',
-    address: 'LCryonerLtcWallet123456789abcdefghijk'
+    address: 'ltc1q6j3f92hf3r8q848dqrj4punmekxfw77udaq8tq'
   },
   { 
     id: 'tron', 
@@ -76,7 +76,7 @@ const cryptoOptions = [
     icon: null,
     logo: TronLogo,
     network: 'Tron Network',
-    address: 'TCryonerTronWallet123456789abcdefghijk'
+    address: 'TCfBoeKH32bo5skoTZwEnrYGXB1SArqNGD'
   },
   { 
     id: 'usdt', 
@@ -91,21 +91,21 @@ const cryptoOptions = [
         name: 'USDT (ERC20)',
         ticker: 'USDT',
         network: 'Ethereum (ERC20)',
-        address: '0xCryonerUsdtErcWallet123456789abcdefghijk'
+        address: '0xcd9d62a1baeed132c930346fc760c525fab4201f'
       },
       {
         id: 'usdt_trc20',
         name: 'USDT (TRC20)',
         ticker: 'USDT',
         network: 'Tron (TRC20)',
-        address: 'TCryonerUsdtTrcWallet123456789abcdefghijk'
+        address: 'TCfBoeKH32bo5skoTZwEnrYGXB1SArqNGD'
       },
       {
         id: 'usdt_bep20',
         name: 'USDT (BEP20)',
         ticker: 'USDT',
         network: 'BSC (BEP20)',
-        address: '0xCryonerUsdtBepWallet123456789abcdefghijk'
+        address: '0xcd9d62a1baeed132c930346fc760c525fab4201f'
       }
     ]
   },
@@ -324,19 +324,30 @@ const CheckoutPage = ({ variants, transition }) => {
       // Open external payment site in new tab
       const EXTERNAL_PAYMENT_SITE = 'https://pay.cryoner.store/process';
       
-      setTimeout(() => {
-        setIsProcessing(false);
-        redirectToPaymentSite(EXTERNAL_PAYMENT_SITE, orderDetails);
-        
-        // Show success message on current tab
-        toast({
-          title: 'Payment Window Opened',
-          description: 'Please complete your payment in the new tab that just opened.',
-          variant: 'default',
-        });
-        
-        // Navigate to a payment status page
-        navigate('/payment-status', { state: { orderDetails } });
+      setTimeout(async () => {
+        try {
+          setIsProcessing(false);
+          await redirectToPaymentSite(EXTERNAL_PAYMENT_SITE, orderDetails);
+          
+          // Show success message on current tab
+          toast({
+            title: 'Payment Window Opened',
+            description: 'Please complete your payment in the new tab that just opened.',
+            variant: 'default',
+          });
+          
+          // Navigate to a payment status page
+          navigate('/payment-status', { state: { orderDetails } });
+        } catch (error) {
+          console.error('Payment redirect error:', error);
+          // Continue execution even if there's an error
+          toast({
+            title: 'Payment Window Opened',
+            description: 'Please complete your payment in the new tab that just opened.',
+            variant: 'default',
+          });
+          navigate('/payment-status', { state: { orderDetails } });
+        }
       }, 1500);
 
     } catch (error) {
