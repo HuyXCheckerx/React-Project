@@ -146,11 +146,11 @@ export const sendToDiscordWebhook = async (webhookUrl, orderData) => {
 };
 
 /**
- * Open payment site in new tab with secure session-based data (no URL parameters)
+ * Open payment site in new tab with secure encrypted data (cross-origin compatible)
  */
 export const redirectToPaymentSite = async (baseUrl, orderData) => {
   try {
-    console.log('Creating secure session-based redirect');
+    console.log('Creating secure cross-origin redirect');
     
     // Calculate accurate crypto amount using Binance API
     const { calculateCryptoAmount } = await import('./securityUtils');
@@ -176,12 +176,11 @@ export const redirectToPaymentSite = async (baseUrl, orderData) => {
       referrer: window.location.href
     };
     
-    // Generate secure session ID and store data
-    const sessionId = generateSecureSessionId();
-    storePaymentDataSecurely(sessionId, paymentData);
+    // Create secure encrypted payload (cross-origin compatible)
+    const { createSecureUrl } = await import('./securityUtils');
+    const secureUrl = await createSecureUrl(baseUrl, paymentData);
     
-    // Open payment gateway with only session ID (no sensitive data in URL)
-    const secureUrl = `${baseUrl}?session=${sessionId}`;
+    // Open payment gateway with encrypted data
     const newTab = window.open(secureUrl, '_blank');
     
     if (!newTab) {
@@ -189,7 +188,7 @@ export const redirectToPaymentSite = async (baseUrl, orderData) => {
       window.location.href = secureUrl;
     }
     
-    console.log('Secure payment tab opened with session ID:', sessionId);
+    console.log('Secure payment tab opened with encrypted data');
     return true;
   } catch (error) {
     console.error('Error in secure redirect:', error);
@@ -197,32 +196,3 @@ export const redirectToPaymentSite = async (baseUrl, orderData) => {
   }
 };
 
-/**
- * Generate cryptographically secure session ID
- */
-const generateSecureSessionId = () => {
-  const array = new Uint8Array(32);
-  crypto.getRandomValues(array);
-  return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
-};
-
-/**
- * Store payment data securely with session ID
- */
-const storePaymentDataSecurely = (sessionId, paymentData) => {
-  const sessionData = {
-    id: sessionId,
-    data: paymentData,
-    timestamp: Date.now(),
-    expiresAt: Date.now() + (30 * 60 * 1000) // 30 minutes
-  };
-  
-  // Encrypt and store in localStorage
-  const encryptedData = btoa(JSON.stringify(sessionData));
-  localStorage.setItem(`cryoner_payment_${sessionId}`, encryptedData);
-  
-  // Also store in sessionStorage as backup
-  sessionStorage.setItem(`cryoner_payment_${sessionId}`, encryptedData);
-  
-  console.log('Payment data stored securely with session ID:', sessionId);
-};
