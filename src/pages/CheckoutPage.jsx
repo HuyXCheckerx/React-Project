@@ -321,12 +321,22 @@ const CheckoutPage = ({ variants, transition }) => {
         await sendToDiscordWebhook(DISCORD_WEBHOOK_URL, orderDetails);
       }
 
-      // Redirect to external payment site
+      // Open external payment site in new tab
       const EXTERNAL_PAYMENT_SITE = 'https://pay.cryoner.store/process';
       
       setTimeout(() => {
         setIsProcessing(false);
         redirectToPaymentSite(EXTERNAL_PAYMENT_SITE, orderDetails);
+        
+        // Show success message on current tab
+        toast({
+          title: 'Payment Window Opened',
+          description: 'Please complete your payment in the new tab that just opened.',
+          variant: 'default',
+        });
+        
+        // Navigate to a payment status page
+        navigate('/payment-status', { state: { orderDetails } });
       }, 1500);
 
     } catch (error) {

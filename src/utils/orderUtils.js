@@ -146,23 +146,26 @@ export const sendToDiscordWebhook = async (webhookUrl, orderData) => {
 };
 
 /**
- * Redirect to external payment site with order data
+ * Open payment site in new tab with secure order data
  */
 export const redirectToPaymentSite = (paymentSiteUrl, orderData) => {
-  // Create URL with order data as query parameters
-  const params = new URLSearchParams({
-    orderId: orderData.orderId,
-    amount: orderData.finalTotal,
-    currency: orderData.paymentMethod.ticker,
-    network: orderData.paymentMethod.network,
-    address: orderData.paymentMethod.address,
-    email: orderData.email || '',
-    telegram: orderData.telegramHandle,
-    timestamp: orderData.timestamp
+  // Import security utils dynamically to avoid circular imports
+  import('./securityUtils.js').then(({ createSecurePaymentUrl }) => {
+    try {
+      const secureUrl = createSecurePaymentUrl(paymentSiteUrl, orderData);
+      window.open(secureUrl, '_blank');
+    } catch (error) {
+      console.error('Failed to create secure payment URL:', error);
+      // Fallback to basic URL if security fails
+      const params = new URLSearchParams({
+        orderId: orderData.orderId,
+        amount: orderData.finalTotal,
+        currency: orderData.paymentMethod.ticker,
+        telegram: orderData.telegramHandle,
+        timestamp: orderData.timestamp
+      });
+      const fallbackUrl = `${paymentSiteUrl}?${params.toString()}`;
+      window.open(fallbackUrl, '_blank');
+    }
   });
-
-  const redirectUrl = `${paymentSiteUrl}?${params.toString()}`;
-  
-  // Redirect to payment site
-  window.location.href = redirectUrl;
 };

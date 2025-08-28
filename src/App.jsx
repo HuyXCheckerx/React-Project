@@ -14,6 +14,7 @@ import VouchesPage from '@/pages/VouchesPage';
 import UptimePage from '@/pages/UptimePage';
 import CheckoutPage from '@/pages/CheckoutPage';
 import PaymentPage from '@/pages/PaymentPage';
+import PaymentStatusPage from '@/pages/PaymentStatusPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import CartSidebar from '@/components/CartSidebar';
 
@@ -108,6 +109,7 @@ const App = () => {
           <Route path="/uptime" element={<UptimePage variants={pageVariants} transition={pageTransition} />} />
           <Route path="/checkout" element={<CheckoutPage variants={pageVariants} transition={pageTransition} />} />
           <Route path="/payment" element={<PaymentPage variants={pageVariants} transition={pageTransition} />} />
+          <Route path="/payment-status" element={<PaymentStatusPage variants={pageVariants} transition={pageTransition} />} />
           <Route path="*" element={<NotFoundPage variants={pageVariants} transition={pageTransition} />} />
         </Routes>
       </AnimatePresence>
