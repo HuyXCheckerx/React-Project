@@ -1,3 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <rect width="256" height="256" rx="48" fill="#1B1E28"/>
+  <circle cx="128" cy="128" r="64" fill="#F7931A"/>
+  <path d="M122 88h18c10 0 18 8 18 18 0 8-6 15-14 17 9 2 16 9 16 18 0 11-9 20-20 20h-18v-11h-8v-12h8v-16h-8v-12h8V88Zm12 12v16h6c4 0 8-4 8-8s-4-8-8-8h-6Zm0 28v20h8c5 0 9-4 9-10s-4-10-9-10h-8Z" fill="#fff"/>
+</svg>
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Creator: CorelDRAW 2019 (64-Bit) -->

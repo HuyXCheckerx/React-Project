@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <rect width="256" height="256" rx="48" fill="#1B1E28"/>
+  <g transform="translate(28,28)">
+    <path d="M100 0L128 28L100 56L72 28L100 0Z" fill="#F3BA2F"/>
+    <path d="M156 56L184 84L156 112L128 84L156 56Z" fill="#F3BA2F"/>
+    <path d="M100 112L128 140L100 168L72 140L100 112Z" fill="#F3BA2F"/>
+    <path d="M44 56L72 84L44 112L16 84L44 56Z" fill="#F3BA2F"/>
+    <path d="M100 72L128 100L100 128L72 100L100 72Z" fill="#F3BA2F"/>
+  </g>
+</svg>
+
