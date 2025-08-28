@@ -70,17 +70,17 @@ export const decryptOrderData = (encryptedData) => {
 /**
  * Create secure payment URL with encrypted data and token
  */
-export const createSecurePaymentUrl = (baseUrl, orderData) => {
+export const createSecureUrl = async (baseUrl, orderData) => {
   console.log('Creating secure payment URL with order data:', orderData);
   
   // Enhanced order data with payment details
   const enhancedOrderData = {
     ...orderData,
-    paymentAddress: orderData.paymentMethod?.address,
-    cryptoAmount: calculateCryptoAmount(orderData.finalTotal, orderData.paymentMethod?.ticker),
-    usdAmount: orderData.finalTotal,
-    network: orderData.paymentMethod?.network,
-    currency: orderData.paymentMethod?.ticker,
+    paymentAddress: orderData.address,
+    cryptoAmount: orderData.cryptoAmount,
+    usdAmount: orderData.amount,
+    network: orderData.network,
+    currency: orderData.currency,
     email: orderData.email || '',
     telegram: orderData.telegramHandle || '',
     orderId: orderData.orderId,
