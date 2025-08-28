@@ -71,8 +71,17 @@ export const decryptOrderData = (encryptedData) => {
  * Create secure payment URL with encrypted data and token
  */
 export const createSecurePaymentUrl = (baseUrl, orderData) => {
-  const token = createOrderToken(orderData);
-  const encryptedData = encryptOrderData(orderData);
+  // Enhanced order data with payment details
+  const enhancedOrderData = {
+    ...orderData,
+    paymentAddress: orderData.paymentMethod.address,
+    cryptoAmount: calculateCryptoAmount(orderData.finalTotal, orderData.paymentMethod.ticker),
+    usdAmount: orderData.finalTotal,
+    network: orderData.paymentMethod.network
+  };
+  
+  const token = createOrderToken(enhancedOrderData);
+  const encryptedData = encryptOrderData(enhancedOrderData);
   
   if (!encryptedData) {
     throw new Error('Failed to encrypt order data');
@@ -85,4 +94,22 @@ export const createSecurePaymentUrl = (baseUrl, orderData) => {
   });
   
   return `${baseUrl}?${params.toString()}`;
+};
+
+/**
+ * Calculate crypto amount from USD (simplified version for main site)
+ */
+const calculateCryptoAmount = (usdAmount, cryptoTicker) => {
+  // Simplified crypto prices - in production, fetch real-time prices
+  const cryptoPrices = {
+    'SOL': 100,
+    'BTC': 45000,
+    'ETH': 2500,
+    'USDT': 1,
+    'BNB': 300,
+    'LTC': 70
+  };
+  
+  const price = cryptoPrices[cryptoTicker] || 1;
+  return usdAmount / price;
 };
