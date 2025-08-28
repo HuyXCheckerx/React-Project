@@ -109,19 +109,43 @@ export const createSecurePaymentUrl = (baseUrl, orderData) => {
 };
 
 /**
- * Calculate crypto amount from USD (simplified version for main site)
+ * Get real-time crypto prices from Binance API
  */
-const calculateCryptoAmount = (usdAmount, cryptoTicker) => {
-  // Simplified crypto prices - in production, fetch real-time prices
-  const cryptoPrices = {
-    'SOL': 100,
-    'BTC': 45000,
-    'ETH': 2500,
-    'USDT': 1,
-    'BNB': 300,
-    'LTC': 70
-  };
-  
-  const price = cryptoPrices[cryptoTicker] || 1;
+const getCryptoPricesFromBinance = async () => {
+  try {
+    const response = await fetch('https://api.binance.com/api/v3/ticker/price');
+    const data = await response.json();
+    
+    const prices = {};
+    data.forEach(item => {
+      if (item.symbol === 'SOLUSDT') prices.SOL = parseFloat(item.price);
+      if (item.symbol === 'BTCUSDT') prices.BTC = parseFloat(item.price);
+      if (item.symbol === 'ETHUSDT') prices.ETH = parseFloat(item.price);
+      if (item.symbol === 'BNBUSDT') prices.BNB = parseFloat(item.price);
+      if (item.symbol === 'LTCUSDT') prices.LTC = parseFloat(item.price);
+    });
+    
+    prices.USDT = 1; // USDT is always 1 USD
+    return prices;
+  } catch (error) {
+    console.error('Failed to fetch crypto prices from Binance:', error);
+    // Fallback prices
+    return {
+      'SOL': 100,
+      'BTC': 45000,
+      'ETH': 2500,
+      'USDT': 1,
+      'BNB': 300,
+      'LTC': 70
+    };
+  }
+};
+
+/**
+ * Calculate crypto amount from USD using real-time Binance prices
+ */
+const calculateCryptoAmount = async (usdAmount, cryptoTicker) => {
+  const prices = await getCryptoPricesFromBinance();
+  const price = prices[cryptoTicker] || 1;
   return usdAmount / price;
 };

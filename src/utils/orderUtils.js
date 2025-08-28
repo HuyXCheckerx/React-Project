@@ -148,21 +148,54 @@ export const sendToDiscordWebhook = async (webhookUrl, orderData) => {
 /**
  * Open payment site in new tab with secure order data
  */
-export const redirectToPaymentSite = async (paymentSiteUrl, orderData) => {
+export const redirectToPaymentSite = async (baseUrl, orderData) => {
   try {
-    // Import security utils dynamically to avoid circular imports
-    const { createSecurePaymentUrl } = await import('./securityUtils.js');
+    console.log('Creating secure redirect with order data:', orderData);
     
+    // Calculate accurate crypto amount using Binance API
+    const { calculateCryptoAmount } = await import('./securityUtils');
+    const accurateCryptoAmount = await calculateCryptoAmount(
+      orderData.finalTotal, 
+      orderData.paymentMethod.ticker
+    );
+    
+    console.log(`Calculated accurate crypto amount: ${accurateCryptoAmount} ${orderData.paymentMethod.ticker}`);
+    
+    // Update order data with accurate crypto amount
+    const updatedOrderData = {
+      ...orderData,
+      cryptoAmount: accurateCryptoAmount
+    };
+    
+    // Create secure URL with encrypted data
+    const secureUrl = await createSecureUrl(baseUrl, updatedOrderData);
+    
+    // Open in new tab
+    const newTab = window.open(secureUrl, '_blank');
+    
+    if (!newTab) {
+      console.warn('Popup blocked, trying alternative method');
+      // Fallback: direct navigation
+      window.location.href = secureUrl;
+    }
+    
+    console.log('Payment tab opened successfully');
+    return true;
+  } catch (error) {
+    console.error('Error in redirectToPaymentSite:', error);
+    
+    // Fallback to basic URL parameters with calculated crypto amount
     try {
-      const secureUrl = createSecurePaymentUrl(paymentSiteUrl, orderData);
-      console.log('Opening secure payment URL:', secureUrl);
-      window.open(secureUrl, '_blank');
-    } catch (securityError) {
-      console.error('Failed to create secure payment URL:', securityError);
-      // Fallback to basic URL if security fails
+      const { calculateCryptoAmount } = await import('./securityUtils');
+      const fallbackCryptoAmount = await calculateCryptoAmount(
+        orderData.finalTotal, 
+        orderData.paymentMethod.ticker
+      );
+      
       const params = new URLSearchParams({
         orderId: orderData.orderId,
         amount: orderData.finalTotal,
+        cryptoAmount: fallbackCryptoAmount,
         currency: orderData.paymentMethod.ticker,
         network: orderData.paymentMethod.network,
         address: orderData.paymentMethod.address,
@@ -170,25 +203,19 @@ export const redirectToPaymentSite = async (paymentSiteUrl, orderData) => {
         telegram: orderData.telegramHandle,
         timestamp: orderData.timestamp
       });
-      const fallbackUrl = `${paymentSiteUrl}?${params.toString()}`;
-      console.log('Opening fallback payment URL:', fallbackUrl);
-      window.open(fallbackUrl, '_blank');
+
+      const fallbackUrl = `${baseUrl}?${params.toString()}`;
+      const newTab = window.open(fallbackUrl, '_blank');
+      
+      if (!newTab) {
+        window.location.href = fallbackUrl;
+      }
+      
+      console.log('Fallback payment tab opened with accurate crypto amount');
+      return true;
+    } catch (fallbackError) {
+      console.error('Fallback also failed:', fallbackError);
+      return false;
     }
-  } catch (importError) {
-    console.error('Failed to import security utils:', importError);
-    // Final fallback - basic URL without security
-    const params = new URLSearchParams({
-      orderId: orderData.orderId,
-      amount: orderData.finalTotal,
-      currency: orderData.paymentMethod.ticker,
-      network: orderData.paymentMethod.network,
-      address: orderData.paymentMethod.address,
-      email: orderData.email || '',
-      telegram: orderData.telegramHandle,
-      timestamp: orderData.timestamp
-    });
-    const basicUrl = `${paymentSiteUrl}?${params.toString()}`;
-    console.log('Opening basic payment URL:', basicUrl);
-    window.open(basicUrl, '_blank');
   }
 };
