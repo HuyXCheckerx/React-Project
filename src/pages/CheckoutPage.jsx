@@ -17,10 +17,15 @@ import {
   redirectToPaymentSite 
 } from '@/utils/orderUtils';
 
-import SolanaLogo from '@/assets/solana-logo.svg';
-import BitcoinLogo from '@/assets/bitcoin-logo.svg';
-import EthereumLogo from '@/assets/ethereum-logo.svg';
-import TetherLogo from '@/assets/tether-logo.svg';
+// Icons
+import { 
+  SiBitcoin, 
+  SiEthereum, 
+  SiTether, 
+  SiSolana, 
+  SiBinance, 
+  SiTron 
+} from 'react-icons/si';
 import Squares from '@/Squares'; // <<< 1. IMPORT ADDED
 
 const cryptoOptions = [
@@ -28,7 +33,7 @@ const cryptoOptions = [
     id: 'sol', 
     name: 'Solana', 
     ticker: 'SOL', 
-    logo: SolanaLogo, 
+    icon: SiSolana, 
     network: 'Solana Network',
     address: 'CryonerSolWallet123456789abcdefghijk'
   },
@@ -36,7 +41,7 @@ const cryptoOptions = [
     id: 'btc', 
     name: 'Bitcoin', 
     ticker: 'BTC', 
-    logo: BitcoinLogo, 
+    icon: SiBitcoin, 
     network: 'Bitcoin Network',
     address: '1CryonerBtcWallet123456789abcdefghijk'
   },
@@ -44,7 +49,7 @@ const cryptoOptions = [
     id: 'eth', 
     name: 'Ethereum', 
     ticker: 'ETH', 
-    logo: EthereumLogo, 
+    icon: SiEthereum, 
     network: 'Ethereum (ERC20)',
     address: '0xCryonerEthWallet123456789abcdefghijk'
   },
@@ -52,7 +57,7 @@ const cryptoOptions = [
     id: 'bnb', 
     name: 'BNB', 
     ticker: 'BNB', 
-    logo: EthereumLogo, // Temporary - replace with BNB logo
+    icon: SiBinance,
     network: 'BSC (BEP20)',
     address: '0xCryonerBnbWallet123456789abcdefghijk'
   },
@@ -60,7 +65,7 @@ const cryptoOptions = [
     id: 'ltc', 
     name: 'Litecoin', 
     ticker: 'LTC', 
-    logo: BitcoinLogo, // Temporary - replace with LTC logo
+    icon: SiBitcoin, // Placeholder closest look; provide LTC SVG later
     network: 'Litecoin Network',
     address: 'LCryonerLtcWallet123456789abcdefghijk'
   },
@@ -68,7 +73,7 @@ const cryptoOptions = [
     id: 'tron', 
     name: 'TRON', 
     ticker: 'TRX', 
-    logo: EthereumLogo, // Temporary - replace with TRON logo
+    icon: SiTron,
     network: 'Tron Network',
     address: 'TCryonerTronWallet123456789abcdefghijk'
   },
@@ -76,7 +81,7 @@ const cryptoOptions = [
     id: 'usdt', 
     name: 'Tether', 
     ticker: 'USDT', 
-    logo: TetherLogo, 
+    icon: SiTether, 
     network: 'Multi-Chain',
     hasSubOptions: true,
     subOptions: [
