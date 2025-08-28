@@ -18,11 +18,13 @@ import {
 } from '@/utils/orderUtils';
 
 // Icons
-import BitcoinLogo from '@/assets/bitcoin-logo.svg';
-import EthereumLogo from '@/assets/ethereum-logo.svg';
-import TetherLogo from '@/assets/tether-logo.svg';
-import SolanaLogo from '@/assets/solana-logo.svg';
-import BinanceLogo from '@/assets/binance-logo.svg';
+import { 
+  SiBitcoin, 
+  SiEthereum, 
+  SiTether, 
+  SiSolana, 
+  SiBinance
+} from 'react-icons/si';
 import TronLogo from '@/assets/tron-logo.svg';
 import Squares from '@/Squares'; // <<< 1. IMPORT ADDED
 
@@ -31,7 +33,7 @@ const cryptoOptions = [
     id: 'sol', 
     name: 'Solana', 
     ticker: 'SOL', 
-    logo: SolanaLogo, 
+    icon: SiSolana, 
     network: 'Solana Network',
     address: 'CryonerSolWallet123456789abcdefghijk'
   },
@@ -39,7 +41,7 @@ const cryptoOptions = [
     id: 'btc', 
     name: 'Bitcoin', 
     ticker: 'BTC', 
-    logo: BitcoinLogo, 
+    icon: SiBitcoin, 
     network: 'Bitcoin Network',
     address: '1CryonerBtcWallet123456789abcdefghijk'
   },
@@ -47,7 +49,7 @@ const cryptoOptions = [
     id: 'eth', 
     name: 'Ethereum', 
     ticker: 'ETH', 
-    logo: EthereumLogo, 
+    icon: SiEthereum, 
     network: 'Ethereum (ERC20)',
     address: '0xCryonerEthWallet123456789abcdefghijk'
   },
@@ -55,7 +57,7 @@ const cryptoOptions = [
     id: 'bnb', 
     name: 'BNB', 
     ticker: 'BNB', 
-    logo: BinanceLogo,
+    icon: SiBinance,
     network: 'BSC (BEP20)',
     address: '0xCryonerBnbWallet123456789abcdefghijk'
   },
@@ -63,7 +65,7 @@ const cryptoOptions = [
     id: 'ltc', 
     name: 'Litecoin', 
     ticker: 'LTC', 
-    logo: require('@/assets/litecoin-logo.svg').default,
+    icon: SiBitcoin, // Placeholder closest look; provide LTC SVG later
     network: 'Litecoin Network',
     address: 'LCryonerLtcWallet123456789abcdefghijk'
   },
@@ -71,6 +73,7 @@ const cryptoOptions = [
     id: 'tron', 
     name: 'TRON', 
     ticker: 'TRX', 
+    icon: null,
     logo: TronLogo,
     network: 'Tron Network',
     address: 'TCryonerTronWallet123456789abcdefghijk'
@@ -79,7 +82,7 @@ const cryptoOptions = [
     id: 'usdt', 
     name: 'Tether', 
     ticker: 'USDT', 
-    logo: TetherLogo, 
+    icon: SiTether, 
     network: 'Multi-Chain',
     hasSubOptions: true,
     subOptions: [
@@ -568,7 +571,7 @@ const CheckoutPage = ({ variants, transition }) => {
                     
                     <div className="relative z-10">
                       <div className="relative flex items-center justify-center mb-3">
-                        <img src={BitcoinLogo} alt="Bitcoin" className="w-16 h-16 transition-transform duration-300 ease-out group-hover:scale-110" />
+                        <SiBitcoin size={64} className="text-[#F7931A] transition-transform duration-300 ease-out group-hover:scale-110 drop-shadow-[0_0_10px_rgba(247,147,26,0.35)]" />
                         <div className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" style={{boxShadow:'0 0 40px rgba(247,147,26,0.25)'}} />
                       </div>
                     </div>
@@ -606,7 +609,7 @@ const CheckoutPage = ({ variants, transition }) => {
                     
                     <div className="relative z-10">
                       <div className="relative flex items-center justify-center mb-2">
-                        <img src={EthereumLogo} alt="Ethereum" className="w-14 h-14 transition-transform duration-300 ease-out group-hover:scale-110" />
+                        <SiEthereum size={52} className="text-[#8A92B2] transition-transform duration-300 ease-out group-hover:scale-110 drop-shadow-[0_0_10px_rgba(138,146,178,0.35)]" />
                         <div className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" style={{boxShadow:'0 0 36px rgba(138,146,178,0.25)'}} />
                       </div>
                     </div>
@@ -691,7 +694,7 @@ const CheckoutPage = ({ variants, transition }) => {
                   
                   <div className="relative z-10">
                     <div className="relative flex items-center justify-center mb-2">
-                      <img src={TetherLogo} alt="Tether" className="w-14 h-14 transition-transform duration-300 ease-out group-hover:scale-110" />
+                      <SiTether size={56} className="text-[#26A17B] transition-transform duration-300 ease-out group-hover:scale-110 drop-shadow-[0_0_12px_rgba(38,161,123,0.35)]" />
                       <div className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" style={{boxShadow:'0 0 40px rgba(38,161,123,0.25)'}} />
                     </div>
                   </div>
