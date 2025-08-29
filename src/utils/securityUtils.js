@@ -22,8 +22,8 @@ export const createOrderToken = (orderData, secretKey = 'CRYONER_SECRET_2024') =
   // Create a string from critical order data
   const dataString = [
     orderData.orderId,
-    orderData.finalTotal,
-    orderData.paymentMethod.ticker,
+    orderData.finalTotal || orderData.amount,
+    orderData.paymentMethod?.ticker || orderData.currency,
     orderData.telegramHandle,
     orderData.timestamp,
     secretKey

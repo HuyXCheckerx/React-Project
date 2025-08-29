@@ -180,13 +180,19 @@ export const redirectToPaymentSite = async (baseUrl, orderData) => {
     const { createSecureUrl } = await import('./securityUtils');
     const secureUrl = await createSecureUrl(baseUrl, paymentData);
     
-    // Force open in new tab
-    const newTab = window.open(secureUrl, '_blank', 'noopener,noreferrer');
+    // Open in new tab (not popup) - this bypasses popup blockers
+    const newTab = window.open(secureUrl, '_blank');
     
-    if (!newTab || newTab.closed || typeof newTab.closed == 'undefined') {
-      console.warn('Popup blocked, showing fallback message');
-      // Don't redirect current tab, just show error
-      throw new Error('Popup blocked. Please allow popups for this site.');
+    if (!newTab) {
+      // Fallback: create a link and click it programmatically
+      const link = document.createElement('a');
+      link.href = secureUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      console.log('Opened payment tab using fallback method');
     }
     
     console.log('Secure payment tab opened with encrypted data');

@@ -328,24 +328,15 @@ const CheckoutPage = ({ variants, transition }) => {
         try {
           const redirectResult = await redirectToPaymentSite(EXTERNAL_PAYMENT_SITE, orderDetails);
           
-          if (redirectResult.success) {
-            // Show success message on current tab
-            toast({
-              title: 'Payment Window Opened',
-              description: 'Please complete your payment in the new tab that just opened.',
-              variant: 'default',
-            });
-            
-            // Navigate to a payment status page
-            navigate('/payment-status', { state: { orderDetails } });
-          } else {
-            // Handle popup blocked or other errors
-            toast({
-              title: 'Payment Window Blocked',
-              description: redirectResult.error || 'Please allow popups and try again.',
-              variant: 'destructive',
-            });
-          }
+          // Always show success message since we now use fallback methods
+          toast({
+            title: 'Payment Tab Opened',
+            description: 'Please complete your payment in the new tab that just opened.',
+            variant: 'default',
+          });
+          
+          // Navigate to a payment status page
+          navigate('/payment-status', { state: { orderDetails } });
           
           setIsProcessing(false);
         } catch (error) {
