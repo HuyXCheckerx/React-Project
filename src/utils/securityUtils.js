@@ -123,9 +123,13 @@ const getCryptoPricesFromBinance = async () => {
       if (item.symbol === 'ETHUSDT') prices.ETH = parseFloat(item.price);
       if (item.symbol === 'BNBUSDT') prices.BNB = parseFloat(item.price);
       if (item.symbol === 'LTCUSDT') prices.LTC = parseFloat(item.price);
+      if (item.symbol === 'TRXUSDT') prices.TRX = parseFloat(item.price);
     });
     
     prices.USDT = 1; // USDT is always 1 USD
+    prices.TRON = prices.TRX || 0.1; // TRON alias for TRX
+    
+    console.log('Fetched crypto prices:', prices);
     return prices;
   } catch (error) {
     console.error('Failed to fetch crypto prices from Binance:', error);
@@ -136,7 +140,9 @@ const getCryptoPricesFromBinance = async () => {
       'ETH': 2500,
       'USDT': 1,
       'BNB': 300,
-      'LTC': 70
+      'LTC': 70,
+      'TRX': 0.1,
+      'TRON': 0.1
     };
   }
 };
