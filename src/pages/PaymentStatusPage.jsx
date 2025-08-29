@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useLocation, Link } from 'react-router-dom';
 import { CheckCircle, ExternalLink, ArrowLeft, Clock, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Squares from '@/Squares';
 
 const PaymentStatusPage = ({ variants, transition }) => {
   const location = useLocation();
@@ -71,9 +72,21 @@ const PaymentStatusPage = ({ variants, transition }) => {
       exit="out"
       variants={variants}
       transition={transition}
-      className="min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 bg-background"
+      className="min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 bg-background relative overflow-hidden"
     >
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Squares Background Layer */}
+      <div className="absolute inset-0 z-0 opacity-10">
+        <Squares 
+          speed={0.5} 
+          squareSize={40}
+          direction='diagonal'
+          borderColor='#fff'
+          hoverFillColor='#000'
+        />
+      </div>
+
+      {/* Content on top of background */}
+      <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
