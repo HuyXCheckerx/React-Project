@@ -180,19 +180,20 @@ export const redirectToPaymentSite = async (baseUrl, orderData) => {
     const { createSecureUrl } = await import('./securityUtils');
     const secureUrl = await createSecureUrl(baseUrl, paymentData);
     
-    // Open payment gateway with encrypted data
-    const newTab = window.open(secureUrl, '_blank');
+    // Force open in new tab
+    const newTab = window.open(secureUrl, '_blank', 'noopener,noreferrer');
     
-    if (!newTab) {
-      console.warn('Popup blocked, trying alternative method');
-      window.location.href = secureUrl;
+    if (!newTab || newTab.closed || typeof newTab.closed == 'undefined') {
+      console.warn('Popup blocked, showing fallback message');
+      // Don't redirect current tab, just show error
+      throw new Error('Popup blocked. Please allow popups for this site.');
     }
     
     console.log('Secure payment tab opened with encrypted data');
-    return true;
+    return { success: true, newTab };
   } catch (error) {
     console.error('Error in secure redirect:', error);
-    return false;
+    return { success: false, error: error.message };
   }
 };
 

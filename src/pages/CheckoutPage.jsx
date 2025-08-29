@@ -326,27 +326,36 @@ const CheckoutPage = ({ variants, transition }) => {
       
       setTimeout(async () => {
         try {
+          const redirectResult = await redirectToPaymentSite(EXTERNAL_PAYMENT_SITE, orderDetails);
+          
+          if (redirectResult.success) {
+            // Show success message on current tab
+            toast({
+              title: 'Payment Window Opened',
+              description: 'Please complete your payment in the new tab that just opened.',
+              variant: 'default',
+            });
+            
+            // Navigate to a payment status page
+            navigate('/payment-status', { state: { orderDetails } });
+          } else {
+            // Handle popup blocked or other errors
+            toast({
+              title: 'Payment Window Blocked',
+              description: redirectResult.error || 'Please allow popups and try again.',
+              variant: 'destructive',
+            });
+          }
+          
           setIsProcessing(false);
-          await redirectToPaymentSite(EXTERNAL_PAYMENT_SITE, orderDetails);
-          
-          // Show success message on current tab
-          toast({
-            title: 'Payment Window Opened',
-            description: 'Please complete your payment in the new tab that just opened.',
-            variant: 'default',
-          });
-          
-          // Navigate to a payment status page
-          navigate('/payment-status', { state: { orderDetails } });
         } catch (error) {
           console.error('Payment redirect error:', error);
-          // Continue execution even if there's an error
+          setIsProcessing(false);
           toast({
-            title: 'Payment Window Opened',
-            description: 'Please complete your payment in the new tab that just opened.',
-            variant: 'default',
+            title: 'Payment Error',
+            description: 'Failed to open payment window. Please try again.',
+            variant: 'destructive',
           });
-          navigate('/payment-status', { state: { orderDetails } });
         }
       }, 1500);
 
